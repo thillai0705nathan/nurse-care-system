@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Nurse Management System</title>
+  
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+  <!-- Mobile Header / Hamburger -->
+  <div class="mobile-header">
+    <div class="logo-text">Nurse Care</div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="dashboard-wrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <svg class="logo-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="28" cy="28" r="26" fill="#FCE4EC" stroke="#E91E63" stroke-width="2.5"/>
+          <rect x="23" y="13" width="10" height="30" rx="4" fill="#E91E63"/>
+          <rect x="13" y="23" width="30" height="10" rx="4" fill="#E91E63"/>
+        </svg>
+        <span class="logo-title">Nurse Care</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-link active">
+          <span class="nav-icon">📊</span>
+          Dashboard Overview
+        </a>
+        <a href="add-nurse.html" class="nav-link">
+          <span class="nav-icon">➕</span>
+          Add New Nurse
+        </a>
+        <a href="manage-nurse.html" class="nav-link">
+          <span class="nav-icon">👥</span>
+          Manage Nurse Database
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="admin-login.html" class="nav-link logout-link">
+          <span class="nav-icon">🚪</span>
+          Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="top-header">
+        <h1 class="welcome-title">Welcome Back, Administrator</h1>
+        <div class="profile-wrap">
+          <div class="profile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+        </div>
+      </header>
+
+      <!-- Analytics Summary Grid -->
+      <section class="analytics-grid">
+        <div class="stat-card">
+          <div class="stat-icon">👩‍⚕️</div>
+          <div class="stat-details">
+            <p class="stat-label">Total Nurses Registered</p>
+            <p class="stat-value" id="totalNursesValue">24</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-details">
+            <p class="stat-label">Currently Available</p>
+            <p class="stat-value" id="availableNursesValue">18</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Nurse Categories Section -->
+      <section class="categories-section">
+        <h2 class="section-title">Category of Nurse</h2>
+        <div class="category-grid">
+          
+          <!-- Full-Time Card -->
+          <div class="category-card" id="fullTimeCard">
+            <div class="category-header">
+              <div class="category-title-area">
+                <span class="category-icon">📅</span>
+                <div>
+                  <h3 class="category-name">Full-Time Nurses</h3>
+                  <p class="category-subtitle">Click to view staff list</p>
+                </div>
+              </div>
+              <div class="category-meta">
+                <span class="category-count" id="fullTimeCount">12 Registered</span>
+                <span class="toggle-arrow">▼</span>
+              </div>
+            </div>
+            <div class="category-content">
+              <ul class="nurse-name-list" id="fullTimeList"></ul>
+            </div>
+          </div>
+
+          <!-- Part-Time Card -->
+          <div class="category-card" id="partTimeCard">
+            <div class="category-header">
+              <div class="category-title-area">
+                <span class="category-icon">⏰</span>
+                <div>
+                  <h3 class="category-name">Part-Time Nurses</h3>
+                  <p class="category-subtitle">Click to view staff list</p>
+                </div>
+              </div>
+              <div class="category-meta">
+                <span class="category-count" id="partTimeCount">12 Registered</span>
+                <span class="toggle-arrow">▼</span>
+              </div>
+            </div>
+            <div class="category-content">
+              <ul class="nurse-name-list" id="partTimeList"></ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="api-client.js"></script>
+  <script src="dashboard.js?v=3"></script>
+</body>
+</html>

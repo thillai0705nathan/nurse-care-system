@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find a Nurse | Nurse Care</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="member-portal.css" />
+  <link rel="stylesheet" href="member-nurses.css" />
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <!-- Top Bar -->
+    <header class="app-topbar">
+      <a class="topbar-back" href="member-home.html" aria-label="Back to Home">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <span class="topbar-title">Find a Nurse</span>
+    </header>
+
+    <main class="app-main">
+
+      <!-- Search -->
+      <div class="search-bar">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M17 17l-3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <input type="search" id="searchInput" placeholder="Search by name or skill…" />
+      </div>
+
+      <!-- Date Range -->
+      <div class="filter-row">
+        <div class="field-group compact">
+          <label class="field-label" for="startDateInput">Start Date</label>
+          <input type="date" id="startDateInput" class="field-input" />
+        </div>
+        <div class="field-group compact">
+          <label class="field-label" for="endDateInput">End Date</label>
+          <input type="date" id="endDateInput" class="field-input" />
+        </div>
+      </div>
+      <p class="date-hint" id="dateHint"></p>
+
+      <!-- Gender / Nationality -->
+      <div class="filter-row">
+        <div class="field-group compact">
+          <label class="field-label" for="genderFilter">Gender</label>
+          <select id="genderFilter" class="field-select">
+            <option value="All">All</option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+          </select>
+        </div>
+        <div class="field-group compact">
+          <label class="field-label" for="nationalityFilter">Nationality</label>
+          <select id="nationalityFilter" class="field-select">
+            <option value="All">All</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Duty Hours -->
+      <div class="duty-hours-row">
+        <span class="field-label">Duty Hours</span>
+        <div class="toggle-switch-wrap">
+          <span class="toggle-switch-label" id="dutyHoursLabel">Any</span>
+          <button class="toggle-switch" id="dutyHoursToggle" aria-pressed="false" aria-label="Toggle 8 or 12 hour duty"></button>
+        </div>
+      </div>
+
+      <!-- Sort Bar -->
+      <div class="sort-bar" id="sortBar">
+        <button class="sort-btn" data-sort="age">Age <span class="sort-arrow">↕</span></button>
+        <button class="sort-btn" data-sort="experience">Experience <span class="sort-arrow">↕</span></button>
+        <button class="sort-btn" data-sort="perDaySalary">Cost <span class="sort-arrow">↕</span></button>
+        <button class="sort-btn" data-sort="rating">Rating <span class="sort-arrow">★↕</span></button>
+      </div>
+
+      <!-- Results count -->
+      <p class="results-count" id="resultsCount"></p>
+
+      <!-- Nurse List -->
+      <div class="nurse-list" id="nurseList"></div>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState" hidden>
+        <div class="empty-state-icon">🔎</div>
+        <h3>No nurses found</h3>
+        <p>Try adjusting your search or filters.</p>
+      </div>
+
+    </main>
+
+    <nav class="app-bottomnav" id="bottomNavRoot"></nav>
+  </div>
+
+  <!-- Nurse Detail Modal -->
+  <div class="modal-overlay" id="nurseDetailModal" hidden>
+    <div class="modal-sheet">
+      <div class="modal-drag-handle"></div>
+      <button class="modal-close" id="nurseDetailClose" aria-label="Close">&times;</button>
+
+      <div class="nurse-detail-header">
+        <div class="avatar-circle nurse-detail-avatar" id="nurseDetailAvatar"></div>
+        <div>
+          <h2 class="nurse-detail-name" id="nurseDetailName"></h2>
+          <p class="nurse-detail-sub" id="nurseDetailSub"></p>
+          <div class="nurse-detail-rating" id="nurseDetailRating"></div>
+        </div>
+      </div>
+
+      <div class="nurse-detail-grid" id="nurseDetailGrid"></div>
+
+      <h3 class="nurse-detail-section-title">Skills</h3>
+      <div class="chip-row" id="nurseDetailSkills"></div>
+
+      <h3 class="nurse-detail-section-title">Languages</h3>
+      <div class="chip-row" id="nurseDetailLanguages"></div>
+
+      <div class="nurse-detail-price-row">
+        <div>
+          <span class="price-value" id="nurseDetailPrice"></span>
+          <span class="price-unit">/ day</span>
+        </div>
+        <span class="badge" id="nurseDetailAvailability"></span>
+      </div>
+
+      <div class="nurse-detail-actions">
+        <a class="btn btn-outline btn-block" href="member-contact.html">Contact Us</a>
+        <button class="btn btn-primary btn-block" id="bookNowBtn">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Modal -->
+  <div class="modal-overlay" id="bookingModal" hidden>
+    <div class="modal-sheet">
+      <div class="modal-drag-handle"></div>
+      <button class="modal-close" id="bookingModalClose" aria-label="Close">&times;</button>
+
+      <h2 class="booking-modal-title">Book <span id="bookingNurseName"></span></h2>
+
+      <div class="field-row">
+        <div class="field-group" id="bookStartGroup">
+          <label class="field-label" for="bookStartDate">Start Date</label>
+          <input type="date" id="bookStartDate" class="field-input" />
+          <span class="field-error" id="bookStartError">Start date is required.</span>
+        </div>
+        <div class="field-group" id="bookEndGroup">
+          <label class="field-label" for="bookEndDate">End Date</label>
+          <input type="date" id="bookEndDate" class="field-input" />
+          <span class="field-error" id="bookEndError">End date must be after start date.</span>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Duty Hours</label>
+        <div class="toggle-switch-wrap">
+          <span class="toggle-switch-label" id="bookDutyHoursLabel">08 Hrs</span>
+          <button class="toggle-switch" id="bookDutyHoursToggle" aria-pressed="false"></button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="bookNotes">Notes for the nurse (optional)</label>
+        <textarea id="bookNotes" class="field-textarea" rows="3" placeholder="e.g. patient condition, address details…"></textarea>
+      </div>
+
+      <button class="btn btn-primary btn-block" id="confirmBookingBtn">Confirm Booking</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="api-client.js"></script>
+  <script src="member-nav.js?v=2"></script>
+  <script src="member-nurses.js?v=2"></script>
+</body>
+</html>

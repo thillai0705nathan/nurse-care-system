@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications | Nurse Care</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="member-portal.css" />
+  <link rel="stylesheet" href="member-notifications.css" />
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <header class="app-topbar">
+      <a class="topbar-back" href="member-home.html" aria-label="Back to Home">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <span class="topbar-title">Notifications</span>
+    </header>
+
+    <main class="app-main">
+      <div class="notification-list" id="notificationList"></div>
+
+      <div class="empty-state" id="emptyState" hidden>
+        <div class="empty-state-icon">🔔</div>
+        <h3>No notifications</h3>
+        <p>You're all caught up!</p>
+      </div>
+    </main>
+
+    <nav class="app-bottomnav" id="bottomNavRoot"></nav>
+  </div>
+
+  <script src="api-client.js"></script>
+  <script src="member-nav.js?v=2"></script>
+  <script src="member-notifications.js?v=2"></script>
+</body>
+</html>

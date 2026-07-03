@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports | Nurse Care</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="member-portal.css" />
+  <link rel="stylesheet" href="member-reports.css" />
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <header class="app-topbar">
+      <a class="topbar-back" href="member-home.html" aria-label="Back to Home">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <span class="topbar-title">Reports</span>
+    </header>
+
+    <main class="app-main">
+
+      <div class="report-stats-grid">
+        <div class="report-stat-card">
+          <span class="report-stat-value" id="statTotal">0</span>
+          <span class="report-stat-label">Total Bookings</span>
+        </div>
+        <div class="report-stat-card">
+          <span class="report-stat-value" id="statPending">0</span>
+          <span class="report-stat-label">Pending</span>
+        </div>
+        <div class="report-stat-card">
+          <span class="report-stat-value" id="statCancelled">0</span>
+          <span class="report-stat-label">Cancelled</span>
+        </div>
+        <div class="report-stat-card">
+          <span class="report-stat-value" id="statSpend">₹0</span>
+          <span class="report-stat-label">Est. Total Spend</span>
+        </div>
+      </div>
+
+      <h2 class="section-heading">Booking History</h2>
+      <div class="report-list" id="reportList"></div>
+
+      <div class="empty-state" id="emptyState" hidden>
+        <div class="empty-state-icon">📊</div>
+        <h3>No activity yet</h3>
+        <p>Your booking history and spend will show up here.</p>
+      </div>
+
+    </main>
+
+    <nav class="app-bottomnav" id="bottomNavRoot"></nav>
+  </div>
+
+  <script src="api-client.js"></script>
+  <script src="member-nav.js?v=2"></script>
+  <script src="member-reports.js?v=2"></script>
+</body>
+</html>

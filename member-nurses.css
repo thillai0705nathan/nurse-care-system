@@ -1,0 +1,230 @@
+/* ============================================================
+   MEMBER NURSES — Search / List / Detail Styles
+   ============================================================ */
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--white);
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.search-bar svg { width: 17px; height: 17px; color: var(--primary-pink); flex-shrink: 0; }
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.85rem;
+  background: transparent;
+}
+
+.filter-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-bottom: 0.3rem;
+}
+
+.field-group.compact { margin-bottom: 0; }
+
+.date-hint {
+  font-size: 0.7rem;
+  color: var(--primary-pink);
+  margin-bottom: 1rem;
+}
+
+.duty-hours-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--white);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.1rem;
+  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.05);
+}
+
+.sort-bar {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.9rem;
+}
+
+.sort-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--white);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-dark);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.45rem 0.85rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.sort-btn.active {
+  background: var(--primary-pink);
+  border-color: var(--primary-pink);
+  color: var(--white);
+}
+
+.sort-arrow { font-size: 0.7rem; opacity: 0.7; }
+
+.results-count {
+  font-size: 0.78rem;
+  color: var(--text-gray);
+  margin-bottom: 0.8rem;
+}
+
+/* -------------------------------------
+   NURSE LIST / CARD
+   ------------------------------------- */
+.nurse-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.nurse-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 1rem;
+  display: flex;
+  gap: 0.9rem;
+  box-shadow: 0 5px 15px rgba(233, 30, 99, 0.06);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.nurse-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(233, 30, 99, 0.12);
+}
+
+.nurse-card-avatar {
+  width: 54px;
+  height: 54px;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.nurse-card-body { flex: 1; min-width: 0; }
+
+.nurse-card-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.15rem;
+}
+
+.nurse-card-meta {
+  font-size: 0.78rem;
+  color: var(--text-gray);
+  line-height: 1.5;
+}
+
+.nurse-card-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.nurse-card-reviews {
+  font-size: 0.68rem;
+  color: var(--text-gray);
+  margin-top: 0.2rem;
+}
+
+.nurse-card-price {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-pink);
+  white-space: nowrap;
+}
+
+/* -------------------------------------
+   NURSE DETAIL MODAL
+   ------------------------------------- */
+.nurse-detail-header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.3rem;
+  padding-right: 1.5rem;
+}
+
+.nurse-detail-avatar {
+  width: 68px;
+  height: 68px;
+  font-size: 1.3rem;
+}
+
+.nurse-detail-name { font-size: 1.15rem; font-weight: 700; }
+.nurse-detail-sub { font-size: 0.8rem; color: var(--text-gray); margin: 0.1rem 0 0.3rem; }
+.nurse-detail-rating { font-size: 0.8rem; }
+
+.nurse-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem 1rem;
+  margin-bottom: 1.2rem;
+  padding: 0.9rem;
+  background: var(--bg-color);
+  border-radius: 12px;
+}
+
+.nurse-detail-item { display: flex; flex-direction: column; gap: 0.1rem; }
+.nurse-detail-item-label { font-size: 0.68rem; font-weight: 700; color: var(--text-gray); text-transform: uppercase; }
+.nurse-detail-item-value { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); }
+
+.nurse-detail-section-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.nurse-detail-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.3rem;
+}
+
+.price-value { font-size: 1.3rem; font-weight: 700; color: var(--primary-pink); }
+.price-unit { font-size: 0.78rem; color: var(--text-gray); }
+
+.nurse-detail-actions {
+  display: flex;
+  gap: 0.8rem;
+}
+
+/* -------------------------------------
+   BOOKING MODAL
+   ------------------------------------- */
+.booking-modal-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.3rem;
+  padding-right: 1.5rem;
+}
+
+.booking-modal-title span { color: var(--primary-pink); }
