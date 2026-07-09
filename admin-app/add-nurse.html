@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Nurse | Nurse Management System</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="add-nurse.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <!-- Mobile Header / Hamburger -->
+  <div class="mobile-header">
+    <div class="logo-text">Nurse Care</div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="dashboard-wrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <svg class="logo-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="28" cy="28" r="26" fill="#FCE4EC" stroke="#E91E63" stroke-width="2.5"/>
+          <rect x="23" y="13" width="10" height="30" rx="4" fill="#E91E63"/>
+          <rect x="13" y="23" width="30" height="10" rx="4" fill="#E91E63"/>
+        </svg>
+        <span class="logo-title">Nurse Care</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-link">
+          <span class="nav-icon"><i class="fa-solid fa-gauge-high"></i></span>
+          Dashboard Overview
+        </a>
+        <a href="add-nurse.html" class="nav-link active">
+          <span class="nav-icon"><i class="fa-solid fa-user-plus"></i></span>
+          Add New Nurse
+        </a>
+        <a href="manage-nurse.html" class="nav-link">
+          <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
+          Manage Nurse Database
+        </a>
+              <a href="pending-bookings.html" class="nav-link">
+          <span class="nav-icon"><i class="fa-solid fa-clipboard-check"></i></span>
+          Pending Bookings
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="admin-login.html" class="nav-link logout-link">
+          <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+          Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="top-header">
+        <div>
+          <p class="breadcrumb">Dashboard&nbsp;/&nbsp;<span id="breadcrumbCurrent">Add New Nurse</span></p>
+          <h1 class="welcome-title" id="pageTitle">Add New Nurse</h1>
+        </div>
+        <div class="profile-wrap">
+          <div class="profile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+        </div>
+      </header>
+
+      <!-- Add Nurse Form -->
+      <section class="form-section add-nurse-section">
+        <div class="form-section-heading">
+          <h2 class="section-title" id="formTitle">Nurse Registration Form</h2>
+          <p class="section-subtitle">Fill in the details below to register a new nurse in the system.</p>
+          <span class="nurse-id-badge" id="nurseIdBadge">ID: NUR-000000</span>
+        </div>
+
+        <form class="add-nurse-form" id="addNurseForm" novalidate>
+
+          <!-- ============ PERSONAL INFORMATION ============ -->
+          <div class="form-card">
+            <div class="form-card-header">
+              <span class="form-card-icon"><i class="fa-solid fa-user"></i></span>
+              <h3 class="form-card-title">Personal Information</h3>
+            </div>
+            <div class="form-card-body">
+
+              <div class="photo-upload-wrap">
+                <label for="photoInput" class="photo-circle" id="photoCircle">
+                  <img src="" alt="" class="photo-preview-img" id="photoPreviewImg" hidden />
+                  <span class="photo-placeholder" id="photoPlaceholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                  </span>
+                  <span class="photo-edit-badge" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.5 3.5l3 3L7 16l-4 1 1-4L13.5 3.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </label>
+                <input type="file" id="photoInput" accept="image/*" hidden />
+                <p class="photo-hint">Click to upload photo</p>
+              </div>
+
+              <div class="form-group" id="fullNameGroup">
+                <label class="form-label" for="fullName">Nurse Full Name <span class="required-mark">*</span></label>
+                <input type="text" id="fullName" name="fullName" class="form-input" placeholder="e.g. Sarah Jenkins" autocomplete="name" />
+                <p class="form-error" id="fullNameError"></p>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group" id="genderGroup">
+                  <label class="form-label" for="gender">Gender <span class="required-mark">*</span></label>
+                  <div class="select-wrapper">
+                    <select id="gender" name="gender" class="form-input">
+                      <option value="">Select gender</option>
+                      <option value="Female">Female</option>
+                      <option value="Male">Male</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <p class="form-error" id="genderError"></p>
+                </div>
+
+                <div class="form-group" id="ageGroup">
+                  <label class="form-label" for="age">Age <span class="required-mark">*</span></label>
+                  <input type="number" id="age" name="age" class="form-input" placeholder="e.g. 28" min="18" max="70" />
+                  <p class="form-error" id="ageError"></p>
+                </div>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group" id="nationalityGroup">
+                  <label class="form-label" for="nationality">Nationality</label>
+                  <input type="text" id="nationality" name="nationality" class="form-input" placeholder="e.g. Indian" />
+                </div>
+
+                <div class="form-group" id="bloodGroupGroup">
+                  <label class="form-label" for="bloodGroup">Blood Group</label>
+                  <div class="select-wrapper">
+                    <select id="bloodGroup" name="bloodGroup" class="form-input">
+                      <option value="">Select blood group</option>
+                      <option>A+</option><option>A-</option>
+                      <option>B+</option><option>B-</option>
+                      <option>AB+</option><option>AB-</option>
+                      <option>O+</option><option>O-</option>
+                      <option>Unknown</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ============ CONTACT INFORMATION ============ -->
+          <div class="form-card">
+            <div class="form-card-header">
+              <span class="form-card-icon"><i class="fa-solid fa-phone"></i></span>
+              <h3 class="form-card-title">Contact Information</h3>
+            </div>
+            <div class="form-card-body">
+
+              <div class="form-row form-row-2">
+                <div class="form-group" id="contactNumberGroup">
+                  <label class="form-label" for="contactNumber">Contact Number <span class="required-mark">*</span></label>
+                  <input type="tel" id="contactNumber" name="contactNumber" class="form-input" placeholder="e.g. 9876543210" autocomplete="tel" />
+                  <p class="form-error" id="contactNumberError"></p>
+                </div>
+
+                <div class="form-group" id="emailGroup">
+                  <label class="form-label" for="email">Email Address <span class="required-mark">*</span></label>
+                  <input type="email" id="email" name="email" class="form-input" placeholder="nurse@hospital.com" autocomplete="email" />
+                  <p class="form-error" id="emailError"></p>
+                </div>
+              </div>
+
+              <div class="form-group" id="emergencyContactGroup">
+                <label class="form-label" for="emergencyContact">Emergency Contact Number</label>
+                <input type="tel" id="emergencyContact" name="emergencyContact" class="form-input" placeholder="e.g. 9876500000" />
+              </div>
+
+              <div class="form-group" id="addressGroup">
+                <label class="form-label" for="address">Address</label>
+                <textarea id="address" name="address" class="form-input form-textarea" rows="3" placeholder="Street, City, State, PIN code"></textarea>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ============ PROFESSIONAL DETAILS ============ -->
+          <div class="form-card">
+            <div class="form-card-header">
+              <span class="form-card-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+              <h3 class="form-card-title">Professional Details</h3>
+            </div>
+            <div class="form-card-body">
+
+              <div class="form-row form-row-2">
+                <div class="form-group" id="qualificationGroup">
+                  <label class="form-label" for="qualification">Qualification <span class="required-mark">*</span></label>
+                  <div class="select-wrapper">
+                    <select id="qualification" name="qualification" class="form-input">
+                      <option value="">Select qualification</option>
+                      <option value="GNM">GNM (General Nursing &amp; Midwifery)</option>
+                      <option value="ANM">ANM (Auxiliary Nurse Midwifery)</option>
+                      <option value="BSN">BSN (Bachelor of Science in Nursing)</option>
+                      <option value="RN">RN (Registered Nurse)</option>
+                      <option value="MSN">MSN (Master of Science in Nursing)</option>
+                      <option value="NP">NP (Nurse Practitioner)</option>
+                      <option value="LPN">LPN (Licensed Practical Nurse)</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <p class="form-error" id="qualificationError"></p>
+                </div>
+
+                <div class="form-group" id="experienceGroup">
+                  <label class="form-label" for="experience">Years of Experience <span class="required-mark">*</span></label>
+                  <input type="number" id="experience" name="experience" class="form-input" placeholder="e.g. 3" min="0" max="50" />
+                  <p class="form-error" id="experienceError"></p>
+                </div>
+              </div>
+
+              <div class="form-group" id="skillsGroup">
+                <label class="form-label">Skills / Services Offered</label>
+                <p class="field-hint">Select every service this nurse can provide — these match the categories shown in the Member app.</p>
+
+                <p class="skills-checkbox-heading">Short-Term Services</p>
+                <div class="skills-checkbox-grid" id="skillsGridShortTerm">
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Home Nursing" /> Home Nursing</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Wound Care" /> Wound Care</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Infusion" /> Infusion</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Catheterization" /> Catheterization</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Injection" /> Injection</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Stoma Care" /> Stoma Care</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Vital Checks" /> Vital Checks</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Vaccination" /> Vaccination</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Medical Escort" /> Medical Escort</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Respite Care" /> Respite Care</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Private Nurse (Hourly/Daily)" /> Private Nurse (Hourly/Daily)</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Part-Time Caregiver" /> Part-Time Caregiver</label>
+                </div>
+
+                <p class="skills-checkbox-heading">Long-Term Services</p>
+                <div class="skills-checkbox-grid" id="skillsGridLongTerm">
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Elderly Home Care" /> Elderly Home Care</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Home Care" /> Home Care</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Caregiver" /> Caregiver</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Private Nurse (Monthly)" /> Private Nurse (Monthly)</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Intensive Care" /> Intensive Care</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Pulmonary Care" /> Pulmonary Care</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Dementia Care" /> Dementia Care</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Palliative Care" /> Palliative Care</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Bedridden Patient Care" /> Bedridden Patient Care</label>
+                  <label class="skill-checkbox"><input type="checkbox" class="skill-checkbox-input" value="Rehabilitation Care" /> Rehabilitation Care</label>
+                </div>
+
+                <input type="hidden" id="skillsHidden" name="skills" />
+              </div>
+
+              <div class="form-group" id="languagesGroup">
+                <label class="form-label" for="languagesInput">Languages Known</label>
+                <div class="chip-input-wrapper" id="languagesWrapper">
+                  <div class="chips-list" id="languagesChips"></div>
+                  <input type="text" id="languagesInput" class="chip-input" placeholder="Type a language and press Enter (e.g. English)" />
+                </div>
+                <input type="hidden" id="languagesHidden" name="languages" />
+                <p class="field-hint">Press Enter or comma to add each language.</p>
+              </div>
+
+              <div class="form-group" id="certificationsGroup">
+                <label class="form-label" for="certifications">Certifications (optional)</label>
+                <textarea id="certifications" name="certifications" class="form-input form-textarea" rows="2" placeholder="e.g. BLS, ACLS, CPR Certified"></textarea>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ============ EMPLOYMENT & SALARY DETAILS ============ -->
+          <div class="form-card">
+            <div class="form-card-header">
+              <span class="form-card-icon"><i class="fa-solid fa-briefcase"></i></span>
+              <h3 class="form-card-title">Employment &amp; Salary Details</h3>
+            </div>
+            <div class="form-card-body">
+
+              <div class="form-group" id="employeeTypeGroup">
+                <label class="form-label">Employee Category <span class="required-mark">*</span></label>
+                <div class="radio-pill-group" id="employeeTypeGroup2">
+                  <label class="radio-pill">
+                    <input type="radio" name="employeeType" value="Full-Time" />
+                    <span>Full-Time</span>
+                  </label>
+                  <label class="radio-pill">
+                    <input type="radio" name="employeeType" value="Part-Time" />
+                    <span>Part-Time</span>
+                  </label>
+                </div>
+                <p class="form-error" id="employeeTypeError"></p>
+              </div>
+
+              <div class="form-row form-row-2">
+                <div class="form-group" id="shiftGroup">
+                  <label class="form-label" for="shiftPreference">Shift Preference</label>
+                  <div class="select-wrapper">
+                    <select id="shiftPreference" name="shiftPreference" class="form-input">
+                      <option value="Day Shift">Day Shift (6 AM – 6 PM)</option>
+                      <option value="Night Shift">Night Shift (6 PM – 6 AM)</option>
+                      <option value="Rotational">Rotational</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group" id="joiningDateGroup">
+                  <label class="form-label" for="joiningDate">Joining Date</label>
+                  <input type="date" id="joiningDate" name="joiningDate" class="form-input" />
+                </div>
+              </div>
+
+              <div class="duty-hours-note">
+                <span class="duty-hours-icon"><i class="fa-solid fa-clock"></i></span>
+                Standard duty shift: <strong>12 hours</strong> per working day.
+              </div>
+
+              <div class="form-row form-row-2 salary-row">
+                <div class="form-group" id="monthlySalaryGroup">
+                  <label class="form-label" for="monthlySalary">Monthly Salary (₹) <span class="required-mark">*</span></label>
+                  <input type="number" id="monthlySalary" name="monthlySalary" class="form-input" placeholder="e.g. 30000" min="0" />
+                  <p class="form-error" id="monthlySalaryError"></p>
+                </div>
+
+                <div class="form-group" id="perDaySalaryGroup">
+                  <label class="form-label" for="perDaySalary">Per-Day Salary (₹) <span class="label-note">for one 12-hour shift</span></label>
+                  <div class="per-day-wrap">
+                    <input type="number" id="perDaySalary" name="perDaySalary" class="form-input" placeholder="Auto or manual" min="0" />
+                    <button type="button" class="btn-auto-calc" id="autoCalcBtn" title="Calculate from monthly salary ÷ 30">Auto</button>
+                  </div>
+                  <p class="field-hint">Click "Auto" to calculate from monthly salary ÷ 30 days.</p>
+                </div>
+              </div>
+
+              <div class="form-group" id="availabilityGroup">
+                <label class="form-label" for="availability">Availability Status</label>
+                <div class="select-wrapper">
+                  <select id="availability" name="availability" class="form-input">
+                    <option value="Available">Available</option>
+                    <option value="On Duty">On Duty</option>
+                    <option value="On Leave">On Leave</option>
+                    <option value="Inactive">Inactive</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ============ FORM ACTIONS ============ -->
+          <div class="form-actions add-nurse-actions">
+            <a href="dashboard.html" class="btn btn-cancel" id="cancelBtn">Cancel</a>
+            <button type="reset" class="btn btn-reset" id="resetBtn">Clear Form</button>
+            <button type="submit" class="btn btn-pink" id="submitBtn">
+              <span class="btn-submit-text">Save Nurse</span>
+              <span class="btn-submit-spinner" aria-hidden="true"></span>
+            </button>
+          </div>
+
+        </form>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="api-client.js"></script>
+  <script src="dashboard.js?v=3"></script>
+  <script src="add-nurse.js?v=3"></script>
+</body>
+</html>

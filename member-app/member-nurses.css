@@ -38,6 +38,98 @@
   margin-bottom: 1rem;
 }
 
+/* -------------------------------------
+   SKILLS / SERVICE FILTER
+   ------------------------------------- */
+.skills-filter-section {
+  margin-bottom: 1.1rem;
+}
+
+.skills-filter-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--white);
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.skills-filter-toggle i {
+  margin-left: auto;
+  color: var(--primary-pink);
+  font-size: 0.8rem;
+  transition: transform 0.2s;
+}
+
+.skills-filter-toggle.open i {
+  transform: rotate(180deg);
+}
+
+.skills-filter-count {
+  background: var(--primary-pink);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+}
+
+.skills-filter-chips {
+  background: var(--white);
+  border: 1.5px solid var(--border-color);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 0.9rem 1rem 1rem;
+  margin-top: -1px;
+}
+
+.skills-filter-heading {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin: 0.7rem 0 0.5rem;
+}
+
+.skills-filter-heading:first-child {
+  margin-top: 0;
+}
+
+.skills-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.skill-filter-chip {
+  background: var(--bg-color);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-dark);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.4rem 0.75rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.skill-filter-chip.active {
+  background: var(--primary-pink);
+  border-color: var(--primary-pink);
+  color: var(--white);
+  font-weight: 600;
+}
+
 .duty-hours-row {
   display: flex;
   align-items: center;

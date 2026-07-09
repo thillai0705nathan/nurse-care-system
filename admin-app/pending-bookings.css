@@ -1,0 +1,290 @@
+/* ============================================================
+   PENDING BOOKINGS — Page Specific Styles
+   Extends dashboard.css design tokens (--primary-pink, --light-pink, etc.)
+   ============================================================ */
+
+:root {
+  --color-error: #D32F2F;
+  --color-error-bg: #FFEBEE;
+  --color-success: #2E7D32;
+  --color-success-bg: #E8F5E9;
+}
+
+.breadcrumb {
+  font-size: 0.85rem;
+  color: var(--text-gray);
+  margin-bottom: 0.3rem;
+}
+
+.breadcrumb span {
+  color: var(--primary-pink);
+  font-weight: 600;
+}
+
+/* -------------------------------------
+   NAV BADGE (sidebar "Pending Bookings" count)
+   ------------------------------------- */
+.nav-link {
+  position: relative;
+}
+
+.nav-badge {
+  margin-left: auto;
+  background-color: var(--color-error);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+}
+
+/* -------------------------------------
+   INTRO NOTE
+   ------------------------------------- */
+.section-intro {
+  font-size: 0.85rem;
+  color: var(--text-gray);
+  background-color: var(--light-pink);
+  border-radius: 10px;
+  padding: 0.85rem 1.1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.55;
+}
+
+/* -------------------------------------
+   EMPTY STATE
+   ------------------------------------- */
+.empty-state {
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(30, 58, 138, 0.05);
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary-pink);
+}
+
+.empty-state h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  color: var(--text-gray);
+}
+
+/* -------------------------------------
+   PENDING BOOKING CARDS
+   ------------------------------------- */
+.pending-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.booking-request-card {
+  background-color: var(--white);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 5px 15px rgba(30, 58, 138, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.booking-request-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 260px;
+}
+
+.booking-request-nurse {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.booking-request-nurse i {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--light-pink);
+  color: var(--primary-pink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.booking-request-nurse-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.booking-request-nurse-sub {
+  font-size: 0.8rem;
+  color: var(--text-gray);
+}
+
+.booking-request-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+.booking-request-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  color: var(--text-gray);
+}
+
+.booking-request-detail i {
+  color: var(--primary-pink);
+  width: 14px;
+  text-align: center;
+}
+
+.booking-request-notes {
+  width: 100%;
+  color: var(--text-dark);
+}
+
+.booking-request-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.btn-accept {
+  background-color: var(--color-success);
+  color: var(--white);
+}
+
+.btn-accept:hover {
+  background-color: #1b5e20;
+}
+
+.btn-deny {
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+}
+
+.btn-deny:hover {
+  background-color: #ffd9d9;
+}
+
+/* -------------------------------------
+   MODAL (Accept/Deny confirmation)
+   ------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(15, 23, 55, 0.45);
+  backdrop-filter: blur(4px);
+}
+
+.modal-overlay[hidden] {
+  display: none;
+}
+
+.modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18);
+  padding: 2rem 1.75rem;
+}
+
+.confirm-modal-card {
+  max-width: 380px;
+  text-align: center;
+}
+
+.confirm-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--primary-pink);
+}
+
+.confirm-icon-accept { color: var(--color-success); }
+.confirm-icon-deny   { color: var(--color-error); }
+
+.modal-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.modal-desc {
+  font-size: 0.9rem;
+  color: var(--text-gray);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.confirm-actions .btn {
+  flex: 1;
+}
+
+.btn-cancel {
+  background-color: transparent;
+  color: var(--text-gray);
+  border: 1.5px solid #ddd;
+}
+
+.btn-cancel:hover {
+  background-color: #f5f5f5;
+}
+
+.btn-danger {
+  background-color: var(--color-error);
+  color: var(--white);
+}
+
+.btn-danger:hover {
+  background-color: #b71c1c;
+}
+
+@media (max-width: 640px) {
+  .booking-request-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .booking-request-actions {
+    justify-content: stretch;
+  }
+
+  .booking-request-actions .btn {
+    flex: 1;
+  }
+}

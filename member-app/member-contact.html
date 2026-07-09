@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Nurse Care</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="member-portal.css" />
+  <link rel="stylesheet" href="member-contact.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <header class="app-topbar">
+      <a class="topbar-back" href="member-home.html" aria-label="Back to Home">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <span class="topbar-title">Contact Us</span>
+    </header>
+
+    <main class="app-main">
+
+      <!-- Contact Info Cards -->
+      <div class="contact-info-grid">
+        <a class="contact-info-card" href="tel:+919876543210">
+          <span class="contact-info-icon"><i class="fa-solid fa-phone"></i></span>
+          <span class="contact-info-label">Call Us</span>
+          <span class="contact-info-value">+91 98765 43210</span>
+        </a>
+        <a class="contact-info-card" href="mailto:support@nursecare.com">
+          <span class="contact-info-icon"><i class="fa-solid fa-envelope"></i></span>
+          <span class="contact-info-label">Email Us</span>
+          <span class="contact-info-value">support@nursecare.com</span>
+        </a>
+        <div class="contact-info-card">
+          <span class="contact-info-icon"><i class="fa-solid fa-location-dot"></i></span>
+          <span class="contact-info-label">Visit Us</span>
+          <span class="contact-info-value">12 Wellness Street, Chennai</span>
+        </div>
+        <div class="contact-info-card">
+          <span class="contact-info-icon"><i class="fa-solid fa-clock"></i></span>
+          <span class="contact-info-label">Support Hours</span>
+          <span class="contact-info-value">24 / 7 Available</span>
+        </div>
+      </div>
+
+      <!-- Message Form -->
+      <section>
+        <h2 class="section-heading">Send us a message</h2>
+        <p class="section-subtext">Have a question about a service or booking? We'll get back to you shortly.</p>
+
+        <form id="contactForm" novalidate>
+          <div class="field-group" id="nameGroup">
+            <label class="field-label" for="nameInput">Your Name</label>
+            <input type="text" id="nameInput" class="field-input" placeholder="e.g. Arjun Mehta" />
+            <span class="field-error">Please enter your name.</span>
+          </div>
+
+          <div class="field-group" id="contactEmailGroup">
+            <label class="field-label" for="contactEmailInput">Email Address</label>
+            <input type="email" id="contactEmailInput" class="field-input" placeholder="you@example.com" />
+            <span class="field-error" id="contactEmailError">Please enter a valid email.</span>
+          </div>
+
+          <div class="field-group" id="subjectGroup">
+            <label class="field-label" for="subjectSelect">Subject</label>
+            <select id="subjectSelect" class="field-select">
+              <option value="Booking Inquiry">Booking Inquiry</option>
+              <option value="Nurse Feedback">Nurse Feedback</option>
+              <option value="Billing Question">Billing Question</option>
+              <option value="General Question">General Question</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="field-group" id="messageGroup">
+            <label class="field-label" for="messageInput">Message</label>
+            <textarea id="messageInput" class="field-textarea" rows="4" placeholder="Tell us how we can help…"></textarea>
+            <span class="field-error">Please enter a message.</span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="sendMessageBtn">
+            <span id="sendBtnText">Send Message</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq-section">
+        <h2 class="section-heading">Frequently Asked Questions</h2>
+        <div class="faq-list" id="faqList"></div>
+      </section>
+
+    </main>
+
+    <nav class="app-bottomnav" id="bottomNavRoot"></nav>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="api-client.js"></script>
+  <script src="member-nav.js?v=2"></script>
+  <script src="member-contact.js?v=2"></script>
+</body>
+</html>

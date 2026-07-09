@@ -1,0 +1,138 @@
+/* ============================================================
+   MEMBER BOOKINGS — Page Specific Styles
+   ============================================================ */
+
+.status-tabs {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.status-tab {
+  background: var(--white);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-dark);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+.status-tab.active {
+  background: var(--primary-pink);
+  border-color: var(--primary-pink);
+  color: var(--white);
+}
+
+.booking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.booking-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 1.1rem;
+  box-shadow: 0 5px 15px rgba(233, 30, 99, 0.06);
+}
+
+.booking-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.8rem;
+}
+
+.booking-nurse-name { font-size: 0.95rem; font-weight: 700; }
+.booking-nurse-qualification { font-size: 0.75rem; color: var(--text-gray); }
+
+.booking-card-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 1rem;
+  font-size: 0.78rem;
+  color: var(--text-dark);
+  padding: 0.8rem;
+  background: var(--bg-color);
+  border-radius: 10px;
+  margin-bottom: 0.8rem;
+}
+
+.booking-card-details span { color: var(--text-gray); font-weight: 600; }
+
+.booking-card-notes {
+  font-size: 0.78rem;
+  color: var(--text-gray);
+  font-style: italic;
+  margin-bottom: 0.8rem;
+}
+
+.booking-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.booking-id { font-size: 0.7rem; color: var(--text-gray); }
+
+.cancel-modal-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+.cancel-modal-desc { font-size: 0.85rem; color: var(--text-gray); margin-bottom: 1.4rem; line-height: 1.6; }
+.cancel-modal-actions { display: flex; gap: 0.8rem; }
+.cancel-confirm-btn { background: linear-gradient(135deg, #C62828, #E53935); box-shadow: 0 6px 18px rgba(198, 40, 40, 0.3); }
+
+/* -------------------------------------
+   RATE THIS BOOKING
+   ------------------------------------- */
+.btn-rate-text {
+  color: #C77700;
+  font-weight: 600;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.booking-rating-display {
+  margin-bottom: 0.8rem;
+}
+
+.booking-rating-stars {
+  color: #FFC107;
+  font-size: 0.9rem;
+  display: inline-flex;
+  gap: 0.15rem;
+}
+
+.booking-rating-stars .star-empty {
+  color: #E0E0E0;
+}
+
+.booking-rating-review {
+  font-size: 0.78rem;
+  color: var(--text-gray);
+  font-style: italic;
+  margin-top: 0.35rem;
+}
+
+.star-picker {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.star-picker-btn {
+  font-size: 1.8rem;
+  color: #E0E0E0;
+  transition: color 0.15s, transform 0.15s;
+}
+
+.star-picker-btn:active {
+  transform: scale(0.9);
+}
+
+.star-picker-btn.active {
+  color: #FFC107;
+}

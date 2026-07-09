@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pending Bookings | Nurse Management System</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="pending-bookings.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <!-- Mobile Header / Hamburger -->
+  <div class="mobile-header">
+    <div class="logo-text">Nurse Care</div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="dashboard-wrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <svg class="logo-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="28" cy="28" r="26" fill="#FCE4EC" stroke="#E91E63" stroke-width="2.5"/>
+          <rect x="23" y="13" width="10" height="30" rx="4" fill="#E91E63"/>
+          <rect x="13" y="23" width="30" height="10" rx="4" fill="#E91E63"/>
+        </svg>
+        <span class="logo-title">Nurse Care</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-link">
+          <span class="nav-icon"><i class="fa-solid fa-gauge-high"></i></span>
+          Dashboard Overview
+        </a>
+        <a href="add-nurse.html" class="nav-link">
+          <span class="nav-icon"><i class="fa-solid fa-user-plus"></i></span>
+          Add New Nurse
+        </a>
+        <a href="manage-nurse.html" class="nav-link">
+          <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
+          Manage Nurse Database
+        </a>
+        <a href="pending-bookings.html" class="nav-link active">
+          <span class="nav-icon"><i class="fa-solid fa-clipboard-check"></i></span>
+          Pending Bookings
+          <span class="nav-badge" id="pendingCountBadge" hidden>0</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="admin-login.html" class="nav-link logout-link">
+          <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+          Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="top-header">
+        <div>
+          <p class="breadcrumb">Dashboard&nbsp;/&nbsp;<span>Pending Bookings</span></p>
+          <h1 class="welcome-title">Pending Bookings</h1>
+        </div>
+        <div class="profile-wrap">
+          <div class="profile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+        </div>
+      </header>
+
+      <p class="section-intro">
+        Each nurse can only be confirmed for one patient at a time. Accepting a request here will
+        automatically decline any other pending request for the same nurse with overlapping dates.
+      </p>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState" hidden>
+        <div class="empty-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+        <h3>No pending booking requests</h3>
+        <p>New booking requests from members will show up here for you to accept or deny.</p>
+      </div>
+
+      <!-- Pending Booking List -->
+      <div class="pending-list" id="pendingList">
+        <!-- cards injected by JS -->
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Accept/Deny Confirmation Modal -->
+  <div class="modal-overlay" id="confirmModal" hidden>
+    <div class="modal-card confirm-modal-card">
+      <div class="confirm-icon" id="confirmIcon"><i class="fa-solid fa-circle-check"></i></div>
+      <h2 class="modal-title" id="confirmTitle">Confirm Booking?</h2>
+      <p class="modal-desc" id="confirmMessage"></p>
+      <div class="confirm-actions">
+        <button class="btn btn-cancel" id="confirmCancelBtn">Cancel</button>
+        <button class="btn btn-danger" id="confirmActionBtn">Yes, Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="api-client.js"></script>
+  <script src="dashboard.js?v=3"></script>
+  <script src="pending-bookings.js?v=1"></script>
+</body>
+</html>

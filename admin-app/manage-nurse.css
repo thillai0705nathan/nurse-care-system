@@ -1,0 +1,598 @@
+/* ============================================================
+   MANAGE NURSE DATABASE — Page Specific Styles
+   Extends dashboard.css design tokens (--primary-pink, --light-pink, etc.)
+   ============================================================ */
+
+:root {
+  --color-error: #D32F2F;
+  --color-error-bg: #FFEBEE;
+  --color-success: #2E7D32;
+  --color-success-bg: #E8F5E9;
+  --color-info: #1976D2;
+  --color-info-bg: #E3F2FD;
+  --color-warn: #F57C00;
+  --color-warn-bg: #FFF3E0;
+}
+
+.breadcrumb {
+  font-size: 0.85rem;
+  color: var(--text-gray);
+  margin-bottom: 0.3rem;
+}
+
+.breadcrumb span {
+  color: var(--primary-pink);
+  font-weight: 600;
+}
+
+/* -------------------------------------
+   MINI STATS ROW
+   ------------------------------------- */
+.mini-stats-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.mini-stat {
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 5px 15px rgba(30, 58, 138, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.mini-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-pink);
+}
+
+.mini-stat-label {
+  font-size: 0.8rem;
+  color: var(--text-gray);
+}
+
+@media (min-width: 700px) {
+  .mini-stats-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* -------------------------------------
+   TOOLBAR
+   ------------------------------------- */
+.manage-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.search-wrap {
+  position: relative;
+  flex: 1;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--text-gray);
+  pointer-events: none;
+}
+
+.search-wrap input {
+  width: 100%;
+  padding: 0.8rem 1rem 0.8rem 2.6rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  outline: none;
+  background-color: #fafafa;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.search-wrap input:focus {
+  border-color: var(--primary-pink);
+  box-shadow: 0 0 0 3px var(--light-pink);
+  background-color: var(--white);
+}
+
+.filter-wrap {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.filter-wrap .select-wrapper {
+  flex: 1;
+}
+
+.add-nurse-btn {
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (min-width: 850px) {
+  .manage-toolbar {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .filter-wrap {
+    flex: 0 0 auto;
+  }
+
+  .filter-wrap .select-wrapper {
+    width: 160px;
+    flex: none;
+  }
+}
+
+/* -------------------------------------
+   EMPTY STATE
+   ------------------------------------- */
+.empty-state {
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(30, 58, 138, 0.05);
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  color: var(--text-gray);
+  margin-bottom: 1.5rem;
+}
+
+.empty-state .btn {
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* -------------------------------------
+   TABLE
+   ------------------------------------- */
+.table-wrap {
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(30, 58, 138, 0.05);
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nurse-table {
+  width: 100%;
+  min-width: 920px;
+  border-collapse: collapse;
+}
+
+.nurse-table th,
+.nurse-table td {
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+.nurse-table thead th {
+  background-color: #fffafc;
+  color: var(--text-gray);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nurse-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.sort-arrow {
+  opacity: 0.5;
+  font-size: 0.75rem;
+}
+
+.nurse-table th.sort-asc .sort-arrow::before { content: '↑'; }
+.nurse-table th.sort-desc .sort-arrow::before { content: '↓'; }
+.nurse-table th.sort-asc .sort-arrow,
+.nurse-table th.sort-desc .sort-arrow {
+  opacity: 1;
+  color: var(--primary-pink);
+}
+
+.nurse-table tbody tr {
+  border-bottom: 1px solid #f5f5f5;
+  transition: background-color 0.15s;
+}
+
+.nurse-table tbody tr:hover {
+  background-color: #fffafc;
+}
+
+.nurse-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.col-avatar { width: 48px; }
+.col-actions { white-space: nowrap; }
+
+.row-name {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.row-sub {
+  font-size: 0.78rem;
+  color: var(--text-gray);
+}
+
+.avatar-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--light-pink);
+  color: var(--primary-pink);
+  font-weight: 600;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.avatar-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-fulltime { background-color: var(--light-pink); color: var(--primary-pink); }
+.badge-parttime { background-color: #EDE7F6; color: #5E35B1; }
+
+.badge-available   { background-color: var(--color-success-bg); color: var(--color-success); }
+.badge-onduty      { background-color: var(--color-info-bg);    color: var(--color-info); }
+.badge-onleave     { background-color: var(--color-warn-bg);    color: var(--color-warn); }
+.badge-inactive    { background-color: #eee;                    color: #757575; }
+
+/* Row actions */
+.row-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-gray);
+  background-color: transparent;
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.action-btn:hover {
+  background-color: var(--light-pink);
+  color: var(--primary-pink);
+}
+
+.action-btn.delete-btn:hover {
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+}
+
+.no-results {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--text-gray);
+}
+
+/* -------------------------------------
+   RESPONSIVE TABLE → STACKED CARDS
+   ------------------------------------- */
+@media (max-width: 899px) {
+  .nurse-table thead {
+    display: none;
+  }
+
+  .nurse-table, .nurse-table tbody, .nurse-table tr, .nurse-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .nurse-table tr {
+    padding: 1rem;
+    border-bottom: 8px solid #fafafa;
+  }
+
+  .nurse-table td {
+    padding: 0.4rem 0;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nurse-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .nurse-table td.col-avatar {
+    justify-content: flex-start;
+  }
+
+  .nurse-table td.col-avatar::before {
+    content: none;
+  }
+
+  .nurse-table td.col-actions {
+    justify-content: flex-end;
+  }
+
+  .nurse-table td.col-actions::before {
+    content: none;
+  }
+}
+
+/* -------------------------------------
+   VIEW MODAL
+   ------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(51, 33, 40, 0.45);
+  backdrop-filter: blur(4px);
+}
+
+.modal-overlay[hidden] {
+  display: none;
+}
+
+.modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18);
+  padding: 2rem 1.75rem;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.view-modal-card {
+  max-width: 480px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  color: var(--text-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.modal-close:hover {
+  background-color: var(--light-pink);
+  color: var(--primary-pink);
+}
+
+.view-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.view-modal-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--light-pink);
+  color: var(--primary-pink);
+  font-weight: 700;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.view-modal-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.view-modal-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.view-modal-sub {
+  font-size: 0.85rem;
+  color: var(--text-gray);
+}
+
+.view-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.25rem;
+}
+
+.view-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.view-detail-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.view-detail-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.view-detail-value {
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+/* -------------------------------------
+   CONFIRM DELETE MODAL
+   ------------------------------------- */
+.confirm-modal-card {
+  max-width: 380px;
+  text-align: center;
+}
+
+.confirm-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.modal-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.modal-desc {
+  font-size: 0.9rem;
+  color: var(--text-gray);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.confirm-actions .btn {
+  flex: 1;
+}
+
+.btn-cancel {
+  background-color: transparent;
+  color: var(--text-gray);
+  border: 1.5px solid #ddd;
+}
+
+.btn-cancel:hover {
+  background-color: #f5f5f5;
+}
+
+.btn-danger {
+  background-color: var(--color-error);
+  color: var(--white);
+}
+
+.btn-danger:hover {
+  background-color: #b71c1c;
+}
+
+/* -------------------------------------
+   TOAST
+   ------------------------------------- */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background-color: var(--text-dark);
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 999;
+  white-space: nowrap;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.toast.toast-success {
+  background: linear-gradient(135deg, #2E7D32, #43A047);
+}
+
+.toast.toast-error {
+  background: linear-gradient(135deg, #C62828, #E53935);
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 480px) {
+  .view-modal-grid {
+    grid-template-columns: 1fr;
+  }
+}

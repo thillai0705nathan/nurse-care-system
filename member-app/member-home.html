@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Nurse Care</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="member-portal.css" />
+  <link rel="stylesheet" href="member-home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <!-- Top Bar -->
+    <header class="app-topbar">
+      <div class="topbar-brand">
+        <span class="topbar-logo"><i class="fa-solid fa-staff-snake"></i></span>
+        <span class="topbar-title">Nurse Care</span>
+      </div>
+      <a class="topbar-action" href="member-contact.html" aria-label="Contact Us">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 5h16v11H8l-4 4V5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </header>
+
+    <main class="app-main">
+
+      <!-- Greeting + Search Shortcut -->
+      <section class="home-hero">
+        <p class="hero-greeting" id="heroGreeting">Hello <i class="fa-solid fa-hand"></i></p>
+        <h1 class="hero-title">Find trusted nurses<br/>for home care</h1>
+        <a class="hero-search" href="member-nurses.html" aria-label="Search nurses">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M17 17l-3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span>Search nurses by name, skill, gender…</span>
+        </a>
+      </section>
+
+      <!-- Quick Actions -->
+      <section class="quick-actions">
+        <a class="quick-action" href="member-nurses.html">
+          <span class="quick-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+          <span>Find Nurse</span>
+        </a>
+        <a class="quick-action" href="member-booking.html">
+          <span class="quick-icon"><i class="fa-solid fa-calendar-days"></i></span>
+          <span>My Bookings</span>
+        </a>
+        <a class="quick-action" href="member-contact.html">
+          <span class="quick-icon"><i class="fa-solid fa-comment-dots"></i></span>
+          <span>Contact Us</span>
+        </a>
+      </section>
+
+      <!-- Short-Term Nurse -->
+      <section class="service-category">
+        <div class="category-heading">
+          <span class="category-heading-icon"><i class="fa-solid fa-clock"></i></span>
+          <div>
+            <h2 class="category-heading-title">Short-Term Nurse</h2>
+            <p class="category-heading-desc">
+              Professional nursing care for a temporary period, from a few hours to several weeks —
+              ideal for immediate medical assistance, post-surgery recovery, or short-term treatment at home.
+            </p>
+          </div>
+        </div>
+        <div class="service-grid" id="shortTermGrid"></div>
+      </section>
+
+      <!-- Long-Term Nurse -->
+      <section class="service-category">
+        <div class="category-heading">
+          <span class="category-heading-icon"><i class="fa-solid fa-heart"></i></span>
+          <div>
+            <h2 class="category-heading-title">Long-Term Nurse</h2>
+            <p class="category-heading-desc">
+              Continuous nursing and caregiving for months or ongoing care — suited for elderly patients,
+              chronic illness, disability, or daily medical support.
+            </p>
+          </div>
+        </div>
+        <div class="service-grid" id="longTermGrid"></div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="app-bottomnav" id="bottomNavRoot"></nav>
+  </div>
+
+  <!-- Service Detail Modal -->
+  <div class="modal-overlay" id="serviceModal" hidden>
+    <div class="modal-sheet">
+      <div class="modal-drag-handle"></div>
+      <button class="modal-close" id="serviceModalClose" aria-label="Close">&times;</button>
+      <div class="service-modal-icon" id="serviceModalIcon"></div>
+      <h2 class="service-modal-title" id="serviceModalTitle"></h2>
+      <span class="badge service-modal-category" id="serviceModalCategory"></span>
+      <p class="service-modal-desc" id="serviceModalDesc"></p>
+      <h3 class="service-modal-includes-title">What's Included</h3>
+      <ul class="service-modal-includes" id="serviceModalIncludes"></ul>
+      <button class="btn btn-primary btn-block" id="serviceModalRequestBtn">Find a Nurse for This</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="api-client.js"></script>
+  <script src="member-nav.js?v=2"></script>
+  <script src="member-home.js?v=2"></script>
+</body>
+</html>

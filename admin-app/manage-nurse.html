@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Nurse Database | Nurse Management System</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="manage-nurse.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <!-- Mobile Header / Hamburger -->
+  <div class="mobile-header">
+    <div class="logo-text">Nurse Care</div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="dashboard-wrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <svg class="logo-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="28" cy="28" r="26" fill="#FCE4EC" stroke="#E91E63" stroke-width="2.5"/>
+          <rect x="23" y="13" width="10" height="30" rx="4" fill="#E91E63"/>
+          <rect x="13" y="23" width="30" height="10" rx="4" fill="#E91E63"/>
+        </svg>
+        <span class="logo-title">Nurse Care</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-link">
+          <span class="nav-icon"><i class="fa-solid fa-gauge-high"></i></span>
+          Dashboard Overview
+        </a>
+        <a href="add-nurse.html" class="nav-link">
+          <span class="nav-icon"><i class="fa-solid fa-user-plus"></i></span>
+          Add New Nurse
+        </a>
+        <a href="manage-nurse.html" class="nav-link active">
+          <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
+          Manage Nurse Database
+        </a>
+              <a href="pending-bookings.html" class="nav-link">
+          <span class="nav-icon"><i class="fa-solid fa-clipboard-check"></i></span>
+          Pending Bookings
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="admin-login.html" class="nav-link logout-link">
+          <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+          Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="top-header">
+        <div>
+          <p class="breadcrumb">Dashboard&nbsp;/&nbsp;<span>Manage Nurse Database</span></p>
+          <h1 class="welcome-title">Manage Nurse Database</h1>
+        </div>
+        <div class="profile-wrap">
+          <div class="profile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+        </div>
+      </header>
+
+      <!-- Mini Stats -->
+      <section class="mini-stats-row">
+        <div class="mini-stat">
+          <span class="mini-stat-value" id="miniTotalValue">0</span>
+          <span class="mini-stat-label">Total Nurses</span>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-stat-value" id="miniFullTimeValue">0</span>
+          <span class="mini-stat-label">Full-Time</span>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-stat-value" id="miniPartTimeValue">0</span>
+          <span class="mini-stat-label">Part-Time</span>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-stat-value" id="miniAvailableValue">0</span>
+          <span class="mini-stat-label">Available</span>
+        </div>
+      </section>
+
+      <!-- Toolbar -->
+      <section class="manage-toolbar">
+        <div class="search-wrap">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="search-icon">
+            <circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M17 17l-3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <input type="search" id="searchInput" placeholder="Search by name, email or phone…" />
+        </div>
+
+        <div class="filter-wrap">
+          <div class="select-wrapper">
+            <select id="filterType">
+              <option value="All">All Types</option>
+              <option value="Full-Time">Full-Time</option>
+              <option value="Part-Time">Part-Time</option>
+            </select>
+          </div>
+          <div class="select-wrapper">
+            <select id="filterAvailability">
+              <option value="All">All Status</option>
+              <option value="Available">Available</option>
+              <option value="On Duty">On Duty</option>
+              <option value="On Leave">On Leave</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </div>
+        </div>
+
+        <a href="add-nurse.html" class="btn btn-pink add-nurse-btn">+ Add New Nurse</a>
+      </section>
+
+      <!-- Empty State (no nurses at all) -->
+      <div class="empty-state" id="emptyState" hidden>
+        <div class="empty-icon"><i class="fa-solid fa-folder-open"></i></div>
+        <h3>No nurses in the database yet</h3>
+        <p>Nurses you register via "Add New Nurse" will appear here.</p>
+        <a href="add-nurse.html" class="btn btn-pink">+ Add Your First Nurse</a>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrap" id="tableWrap">
+        <table class="nurse-table" id="nurseTable">
+          <thead>
+            <tr>
+              <th class="col-avatar"></th>
+              <th class="sortable" data-sort="fullName">Name <span class="sort-arrow"><i class="fa-solid fa-sort"></i></span></th>
+              <th>Contact</th>
+              <th>Qualification</th>
+              <th class="sortable" data-sort="experience">Experience <span class="sort-arrow"><i class="fa-solid fa-sort"></i></span></th>
+              <th>Type</th>
+              <th class="sortable" data-sort="monthlySalary">Salary <span class="sort-arrow"><i class="fa-solid fa-sort"></i></span></th>
+              <th>Status</th>
+              <th class="col-actions">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="nurseTableBody">
+            <!-- rows injected by JS -->
+          </tbody>
+        </table>
+        <p class="no-results" id="noResults" hidden>No nurses match your search/filters.</p>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- View Nurse Modal -->
+  <div class="modal-overlay" id="viewModal" hidden>
+    <div class="modal-card view-modal-card">
+      <button class="modal-close" id="viewModalClose" aria-label="Close">&times;</button>
+      <div class="view-modal-header">
+        <div class="view-modal-avatar" id="viewAvatar"></div>
+        <div>
+          <h2 class="view-modal-name" id="viewName">Nurse Name</h2>
+          <p class="view-modal-sub" id="viewSub">Qualification · ID</p>
+        </div>
+      </div>
+      <div class="view-modal-grid" id="viewGrid">
+        <!-- detail rows injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal-overlay" id="confirmModal" hidden>
+    <div class="modal-card confirm-modal-card">
+      <div class="confirm-icon"><i class="fa-solid fa-trash-can"></i></div>
+      <h2 class="modal-title">Remove Nurse?</h2>
+      <p class="modal-desc" id="confirmMessage">Are you sure you want to remove this nurse from the database?</p>
+      <div class="confirm-actions">
+        <button class="btn btn-cancel" id="confirmCancelBtn">Cancel</button>
+        <button class="btn btn-danger" id="confirmDeleteBtn">Yes, Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="api-client.js"></script>
+  <script src="dashboard.js?v=3"></script>
+  <script src="manage-nurse.js?v=3"></script>
+</body>
+</html>
