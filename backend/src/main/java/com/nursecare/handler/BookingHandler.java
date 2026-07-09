@@ -24,7 +24,13 @@ public class BookingHandler extends BaseHandler {
         String id = segments.length > 3 ? segments[3] : null;
 
         switch (method) {
-            case "GET" -> sendJson(exchange, 200, listBookings());
+            case "GET" -> {
+                if ("ratings-summary".equals(id)) {
+                    sendJson(exchange, 200, ratingsSummary());
+                } else {
+                    sendJson(exchange, 200, listBookings());
+                }
+            }
             case "POST" -> {
                 JSONObject body = readJsonBody(exchange);
                 String bookingId = IdUtil.generate("BK");
@@ -40,6 +46,10 @@ public class BookingHandler extends BaseHandler {
                     return;
                 }
                 JSONObject body = readJsonBody(exchange);
+                if (body.has("rating")) {
+                    submitRating(exchange, id, body);
+                    return;
+                }
                 String newStatus = body.optString("status", "Pending");
                 updateStatus(id, newStatus);
                 if ("Confirmed".equals(newStatus)) {
@@ -70,6 +80,9 @@ public class BookingHandler extends BaseHandler {
                 o.put("perDaySalary", rs.getDouble("per_day_salary"));
                 o.put("status", rs.getString("status"));
                 o.put("createdAt", rs.getString("created_at"));
+                Object ratingVal = rs.getObject("rating");
+                o.put("rating", ratingVal == null ? JSONObject.NULL : ratingVal);
+                o.put("review", rs.getString("review"));
                 arr.put(o);
             }
         }
@@ -131,5 +144,67 @@ public class BookingHandler extends BaseHandler {
             ps.setString(4, confirmedId);
             ps.executeUpdate();
         }
+    }
+
+    /**
+     * Only Confirmed bookings can be rated (a member can't rate a booking
+     * that was never actually carried out).
+     */
+    private void submitRating(HttpExchange exchange, String id, JSONObject body) throws Exception {
+        int rating = body.optInt("rating", 0);
+        if (rating < 1 || rating > 5) {
+            sendJson(exchange, 400, new JSONObject().put("error", "Rating must be between 1 and 5"));
+            return;
+        }
+        String status = getBookingStatus(id);
+        if (!"Confirmed".equals(status)) {
+            sendJson(exchange, 400, new JSONObject().put("error", "Only confirmed bookings can be rated"));
+            return;
+        }
+        String review = body.optString("review", "");
+        try (Connection conn = Database.getConnection();
+             PreparedStatement ps = conn.prepareStatement("UPDATE bookings SET rating = ?, review = ? WHERE id = ?")) {
+            ps.setInt(1, rating);
+            ps.setString(2, review);
+            ps.setString(3, id);
+            ps.executeUpdate();
+        }
+        sendJson(exchange, 200, new JSONObject().put("success", true));
+    }
+
+    private String getBookingStatus(String id) throws Exception {
+        try (Connection conn = Database.getConnection();
+             PreparedStatement ps = conn.prepareStatement("SELECT status FROM bookings WHERE id = ?")) {
+            ps.setString(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) return rs.getString("status");
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Aggregated rating per nurse, computed from all rated bookings.
+     * Returns { "<nurseId>": { "avgRating": 4.6, "reviewCount": 12 }, ... }
+     */
+    private JSONObject ratingsSummary() throws Exception {
+        JSONObject summary = new JSONObject();
+        String sql = """
+            SELECT nurse_id, AVG(rating) AS avg_rating, COUNT(rating) AS review_count
+            FROM bookings
+            WHERE rating IS NOT NULL
+            GROUP BY nurse_id
+        """;
+        try (Connection conn = Database.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                JSONObject entry = new JSONObject();
+                entry.put("avgRating", Math.round(rs.getDouble("avg_rating") * 10) / 10.0);
+                entry.put("reviewCount", rs.getInt("review_count"));
+                summary.put(rs.getString("nurse_id"), entry);
+            }
+        }
+        return summary;
     }
 }

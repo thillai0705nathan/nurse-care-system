@@ -85,9 +85,14 @@ public final class Database {
                 notes VARCHAR(500),
                 per_day_salary DOUBLE PRECISION,
                 status VARCHAR(20),
-                created_at VARCHAR(40)
+                created_at VARCHAR(40),
+                rating INT,
+                review VARCHAR(1000)
             )
             """,
+            // Migration for databases created before rating/review existed.
+            "ALTER TABLE bookings ADD COLUMN IF NOT EXISTS rating INT",
+            "ALTER TABLE bookings ADD COLUMN IF NOT EXISTS review VARCHAR(1000)",
             """
             CREATE TABLE IF NOT EXISTS contact_messages (
                 id VARCHAR(20) PRIMARY KEY,
