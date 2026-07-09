@@ -40,7 +40,11 @@ public class BookingHandler extends BaseHandler {
                     return;
                 }
                 JSONObject body = readJsonBody(exchange);
-                updateStatus(id, body.optString("status", "Pending"));
+                String newStatus = body.optString("status", "Pending");
+                updateStatus(id, newStatus);
+                if ("Confirmed".equals(newStatus)) {
+                    denyOverlappingPendingBookings(id);
+                }
                 sendJson(exchange, 200, new JSONObject().put("success", true));
             }
             default -> sendJson(exchange, 405, new JSONObject().put("error", "Method not allowed"));
@@ -100,6 +104,31 @@ public class BookingHandler extends BaseHandler {
              PreparedStatement ps = conn.prepareStatement("UPDATE bookings SET status = ? WHERE id = ?")) {
             ps.setString(1, status);
             ps.setString(2, id);
+            ps.executeUpdate();
+        }
+    }
+
+    /**
+     * After a booking is confirmed, any other still-Pending booking for the
+     * same nurse whose date range overlaps this one can no longer be
+     * fulfilled — auto-deny them. Date strings are ISO (YYYY-MM-DD), so
+     * plain string comparison sorts/compares correctly.
+     */
+    private void denyOverlappingPendingBookings(String confirmedId) throws Exception {
+        String sql = """
+            UPDATE bookings
+            SET status = 'Denied'
+            WHERE status = 'Pending'
+              AND id <> ?
+              AND nurse_id = (SELECT nurse_id FROM bookings WHERE id = ?)
+              AND start_date <= (SELECT end_date FROM bookings WHERE id = ?)
+              AND end_date >= (SELECT start_date FROM bookings WHERE id = ?)
+        """;
+        try (Connection conn = Database.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, confirmedId);
+            ps.setString(2, confirmedId);
+            ps.setString(3, confirmedId);
+            ps.setString(4, confirmedId);
             ps.executeUpdate();
         }
     }
