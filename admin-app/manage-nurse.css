@@ -235,7 +235,35 @@
 }
 
 .col-avatar { width: 48px; }
-.col-actions { white-space: nowrap; }
+
+/* Status + Actions stay pinned on-screen while the rest of the table
+   scrolls horizontally, so they're never hidden off the right edge. */
+.col-status {
+  width: 110px;
+  position: sticky;
+  right: 130px;
+  background-color: var(--white);
+  box-shadow: -6px 0 8px -6px rgba(0, 0, 0, 0.08);
+}
+
+.col-actions {
+  width: 130px;
+  white-space: nowrap;
+  position: sticky;
+  right: 0;
+  background-color: var(--white);
+}
+
+.nurse-table tbody tr:nth-child(even) .col-status,
+.nurse-table tbody tr:nth-child(even) .col-actions {
+  background-color: #fffafc;
+}
+
+.nurse-table thead th.col-status,
+.nurse-table thead th.col-actions {
+  background-color: #fffafc;
+  z-index: 2;
+}
 
 .row-name {
   font-weight: 600;

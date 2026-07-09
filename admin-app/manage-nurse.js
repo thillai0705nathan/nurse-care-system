@@ -175,7 +175,7 @@ function buildRow(nurse) {
       <div class="row-name">₹${Number(nurse.monthlySalary || 0).toLocaleString('en-IN')}/mo</div>
       <div class="row-sub">₹${Number(nurse.perDaySalary || 0).toLocaleString('en-IN')}/day</div>
     </td>
-    <td data-label="Status"><span class="badge ${availabilityBadgeClass(nurse.availability)}">${nurse.availability || '—'}</span></td>
+    <td class="col-status" data-label="Status"><span class="badge ${availabilityBadgeClass(nurse.availability)}">${nurse.availability || '—'}</span></td>
     <td class="col-actions" data-label="Actions">
       <div class="row-actions">
         <button class="action-btn view-btn" data-id="${nurse.id}" title="View details" aria-label="View details">
