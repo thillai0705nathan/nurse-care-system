@@ -62,26 +62,19 @@ let sortState = { field: null, direction: 'asc' };
 let dutyHoursFilter = null; // null = any, 8 or 12
 let skillsFilterSet = new Set(); // selected skill/service chips, empty = any
 let bookDutyHours = 8;
+let ratingsSummary = {}; // { nurseId: { avgRating, reviewCount } }, from real submitted ratings
 
 /* ============================================================
    DERIVED DATA HELPERS
    ============================================================ */
-function hashString(str) {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    hash = (hash * 31 + str.charCodeAt(i)) >>> 0;
-  }
-  return hash;
-}
-
 function getRating(nurse) {
-  const hash = hashString(nurse.id);
-  return (4 + (hash % 10) / 10).toFixed(1); // 4.0 - 4.9
+  const entry = ratingsSummary[nurse.id];
+  return entry ? entry.avgRating.toFixed(1) : null;
 }
 
 function getReviewCount(nurse) {
-  const hash = hashString(nurse.id + 'r');
-  return 8 + (hash % 33); // 8 - 40
+  const entry = ratingsSummary[nurse.id];
+  return entry ? entry.reviewCount : 0;
 }
 
 function getDutyHours(nurse) {
@@ -120,6 +113,14 @@ async function loadNurses() {
   } catch (err) {
     showToast(err.message || 'Could not reach the server.', 'error');
     return [];
+  }
+}
+
+async function loadRatingsSummary() {
+  try {
+    return await api.get('/bookings/ratings-summary');
+  } catch (err) {
+    return {};
   }
 }
 
@@ -207,8 +208,10 @@ function buildNurseCard(nurse) {
       <div class="nurse-card-meta">Skills: ${(nurse.skills || '').split(',')[0] || nurse.qualification}</div>
     </div>
     <div class="nurse-card-side">
-      <span class="badge badge-rating"><i class="fa-solid fa-star"></i> ${getRating(nurse)}</span>
-      <span class="nurse-card-reviews">${getReviewCount(nurse)} Reviews</span>
+      ${getRating(nurse)
+        ? `<span class="badge badge-rating"><i class="fa-solid fa-star"></i> ${getRating(nurse)}</span>
+           <span class="nurse-card-reviews">${getReviewCount(nurse)} Review${getReviewCount(nurse) === 1 ? '' : 's'}</span>`
+        : `<span class="nurse-card-reviews">No reviews yet</span>`}
       <span class="nurse-card-price">₹${Number(nurse.perDaySalary).toLocaleString('en-IN')}/Day</span>
     </div>
   `;
@@ -239,7 +242,9 @@ function openNurseDetail(nurseId) {
   dom.nurseDetailAvatar.innerHTML = buildAvatarHtml(nurse);
   dom.nurseDetailName.textContent = nurse.fullName;
   dom.nurseDetailSub.textContent = `${nurse.qualification} · ${nurse.employeeType}`;
-  dom.nurseDetailRating.innerHTML = `<span class="star-rating"><i class="fa-solid fa-star"></i> ${getRating(nurse)}</span> &nbsp;(${getReviewCount(nurse)} reviews)`;
+  dom.nurseDetailRating.innerHTML = getRating(nurse)
+    ? `<span class="star-rating"><i class="fa-solid fa-star"></i> ${getRating(nurse)}</span> &nbsp;(${getReviewCount(nurse)} review${getReviewCount(nurse) === 1 ? '' : 's'})`
+    : `<span class="star-rating-empty">No reviews yet</span>`;
 
   const details = [
     ['Age', `${nurse.age} yrs`],
@@ -357,6 +362,7 @@ async function submitBooking() {
    ============================================================ */
 async function init() {
   allNurses = await loadNurses();
+  ratingsSummary = await loadRatingsSummary();
   populateNationalityFilter();
   setDefaultDates();
   renderNurseList();
