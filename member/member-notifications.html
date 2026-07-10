@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reports | Nurse Care</title>
+  <title>Notifications | Nurse Care</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="member-portal.css" />
-  <link rel="stylesheet" href="member-reports.css" />
+  <link rel="stylesheet" href="member-notifications.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -23,46 +23,24 @@
           <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
-      <span class="topbar-title">Reports</span>
+      <span class="topbar-title">Notifications</span>
     </header>
 
     <main class="app-main">
-
-      <div class="report-stats-grid">
-        <div class="report-stat-card">
-          <span class="report-stat-value" id="statTotal">0</span>
-          <span class="report-stat-label">Total Bookings</span>
-        </div>
-        <div class="report-stat-card">
-          <span class="report-stat-value" id="statPending">0</span>
-          <span class="report-stat-label">Pending</span>
-        </div>
-        <div class="report-stat-card">
-          <span class="report-stat-value" id="statCancelled">0</span>
-          <span class="report-stat-label">Cancelled</span>
-        </div>
-        <div class="report-stat-card">
-          <span class="report-stat-value" id="statSpend">₹0</span>
-          <span class="report-stat-label">Est. Total Spend</span>
-        </div>
-      </div>
-
-      <h2 class="section-heading">Booking History</h2>
-      <div class="report-list" id="reportList"></div>
+      <div class="notification-list" id="notificationList"></div>
 
       <div class="empty-state" id="emptyState" hidden>
-        <div class="empty-state-icon"><i class="fa-solid fa-chart-column"></i></div>
-        <h3>No activity yet</h3>
-        <p>Your booking history and spend will show up here.</p>
+        <div class="empty-state-icon"><i class="fa-solid fa-bell"></i></div>
+        <h3>No notifications</h3>
+        <p>You're all caught up!</p>
       </div>
-
     </main>
 
     <nav class="app-bottomnav" id="bottomNavRoot"></nav>
   </div>
 
-  <script src="api-client.js"></script>
+  <script src="../common/api-client.js"></script>
   <script src="member-nav.js?v=2"></script>
-  <script src="member-reports.js?v=2"></script>
+  <script src="member-notifications.js?v=2"></script>
 </body>
 </html>

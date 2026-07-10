@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Member Sign Up for the Nurse Management System." />
+  <meta name="description" content="Administrator Sign Up for the Nurse Management System." />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Member Sign Up | Nurse Management System</title>
+  <title>Admin Sign Up | Nurse Management System</title>
 
   <!-- Google Fonts: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -49,7 +49,7 @@
         </div>
 
         <h1 class="card-title">Nurse Management System</h1>
-        <p class="card-subtitle">Member Sign Up</p>
+        <p class="card-subtitle">Administrator Sign Up</p>
 
         <div class="header-divider" aria-hidden="true">
           <span class="divider-dot"></span>
@@ -59,7 +59,7 @@
       </header>
 
       <!-- ---- Sign Up Form ---- -->
-      <form class="login-form" id="signupForm" novalidate aria-label="Member Sign Up Form">
+      <form class="login-form" id="signupForm" novalidate aria-label="Admin Sign Up Form">
 
         <!-- Full Name -->
         <div class="form-group" id="fullNameGroup">
@@ -73,7 +73,7 @@
             Full Name
           </label>
           <div class="input-wrap">
-            <input type="text" id="fullNameInput" name="fullName" class="form-input" placeholder="e.g. Arjun Mehta" autocomplete="name" aria-required="true" aria-describedby="fullNameError" />
+            <input type="text" id="fullNameInput" name="fullName" class="form-input" placeholder="e.g. Priya Sharma" autocomplete="name" aria-required="true" aria-describedby="fullNameError" />
             <span class="input-focus-bar" aria-hidden="true"></span>
           </div>
           <p class="form-error" id="fullNameError" role="alert" aria-live="polite"></p>
@@ -91,27 +91,29 @@
             Email Address
           </label>
           <div class="input-wrap">
-            <input type="email" id="emailInput" name="email" class="form-input" placeholder="member@hospital.com" autocomplete="email" aria-required="true" aria-describedby="emailError" />
+            <input type="email" id="emailInput" name="email" class="form-input" placeholder="admin@hospital.com" autocomplete="email" aria-required="true" aria-describedby="emailError" />
             <span class="input-focus-bar" aria-hidden="true"></span>
           </div>
           <p class="form-error" id="emailError" role="alert" aria-live="polite"></p>
         </div>
 
-        <!-- Phone Number -->
-        <div class="form-group" id="phoneGroup">
-          <label class="form-label" for="phoneInput">
+        <!-- Admin Invite Code -->
+        <div class="form-group" id="inviteCodeGroup">
+          <label class="form-label" for="inviteCodeInput">
             <span class="label-icon" aria-hidden="true">
               <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 3.5h2.5l1 3.5-1.5 1.2a9 9 0 004.8 4.8l1.2-1.5 3.5 1V16a1.5 1.5 0 01-1.6 1.5A12.5 12.5 0 012.5 5.1 1.5 1.5 0 014 3.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <rect x="3" y="8" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M6.5 8V5.5a3.5 3.5 0 017 0V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
               </svg>
             </span>
-            Phone Number
+            Admin Invite Code
           </label>
           <div class="input-wrap">
-            <input type="tel" id="phoneInput" name="phone" class="form-input" placeholder="e.g. 9876543210" autocomplete="tel" aria-required="true" aria-describedby="phoneError" />
+            <input type="text" id="inviteCodeInput" name="inviteCode" class="form-input" placeholder="Enter invite code" aria-required="true" aria-describedby="inviteCodeError" />
             <span class="input-focus-bar" aria-hidden="true"></span>
           </div>
-          <p class="form-error" id="phoneError" role="alert" aria-live="polite"></p>
+          <p class="invite-code-hint">Demo invite code: <strong>ADMIN2026</strong></p>
+          <p class="form-error" id="inviteCodeError" role="alert" aria-live="polite"></p>
         </div>
 
         <!-- Password Field -->
@@ -174,7 +176,7 @@
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="btn-login" id="signupBtn" aria-label="Create member account">
+        <button type="submit" class="btn-login" id="signupBtn" aria-label="Create administrator account">
           <span class="btn-text">Create Account</span>
           <span class="btn-icon" aria-hidden="true">
             <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -187,7 +189,7 @@
 
       </form>
 
-      <p class="signup-prompt">Already have an account? <a href="member-login.html">Sign In</a></p>
+      <p class="signup-prompt">Already have an account? <a href="admin-login.html">Sign In</a></p>
 
       <!-- ---- Card Footer ---- -->
       <footer class="card-footer">
@@ -207,7 +209,7 @@
   <!-- Toast Notification -->
   <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
-  <script src="api-client.js"></script>
-  <script src="member-signup.js?v=2"></script>
+  <script src="../common/api-client.js"></script>
+  <script src="admin-signup.js?v=2"></script>
 </body>
 </html>

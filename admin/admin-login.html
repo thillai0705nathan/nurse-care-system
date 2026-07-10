@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Administrator Sign Up for the Nurse Management System." />
+  <meta name="description" content="Administrator Login Portal for the Nurse Management System — secure access for healthcare administrators." />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Admin Sign Up | Nurse Management System</title>
+  <title>Admin Login | Nurse Management System</title>
 
   <!-- Google Fonts: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,23 +25,27 @@
     <div class="shape shape-2"></div>
     <div class="shape shape-3"></div>
     <div class="shape shape-4"></div>
+    <!-- Floating cross / plus medical icons -->
     <div class="medical-icon icon-a">&#43;</div>
     <div class="medical-icon icon-b">&#43;</div>
     <div class="medical-icon icon-c">&#43;</div>
   </div>
 
   <!-- ========================================
-       MAIN SIGNUP WRAPPER
+       MAIN LOGIN WRAPPER
   ======================================== -->
   <main class="login-wrapper" role="main">
     <div class="login-card" id="loginCard">
 
       <!-- ---- Card Header ---- -->
       <header class="card-header">
+        <!-- Logo / Icon -->
         <div class="logo-wrap" aria-label="Nurse Management System Logo">
           <div class="logo-circle">
             <svg class="logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Stethoscope simplified icon -->
               <circle cx="24" cy="24" r="22" fill="#FCE4EC" stroke="#E91E63" stroke-width="2"/>
+              <!-- Cross symbol -->
               <rect x="20" y="12" width="8" height="24" rx="3" fill="#E91E63"/>
               <rect x="12" y="20" width="24" height="8" rx="3" fill="#E91E63"/>
             </svg>
@@ -49,8 +53,9 @@
         </div>
 
         <h1 class="card-title">Nurse Management System</h1>
-        <p class="card-subtitle">Administrator Sign Up</p>
+        <p class="card-subtitle">Administrator Portal</p>
 
+        <!-- Divider -->
         <div class="header-divider" aria-hidden="true">
           <span class="divider-dot"></span>
           <span class="divider-line"></span>
@@ -58,31 +63,14 @@
         </div>
       </header>
 
-      <!-- ---- Sign Up Form ---- -->
-      <form class="login-form" id="signupForm" novalidate aria-label="Admin Sign Up Form">
-
-        <!-- Full Name -->
-        <div class="form-group" id="fullNameGroup">
-          <label class="form-label" for="fullNameInput">
-            <span class="label-icon" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="10" cy="6.5" r="3.25" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M3.5 17c0-3 3-5 6.5-5s6.5 2 6.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            </span>
-            Full Name
-          </label>
-          <div class="input-wrap">
-            <input type="text" id="fullNameInput" name="fullName" class="form-input" placeholder="e.g. Priya Sharma" autocomplete="name" aria-required="true" aria-describedby="fullNameError" />
-            <span class="input-focus-bar" aria-hidden="true"></span>
-          </div>
-          <p class="form-error" id="fullNameError" role="alert" aria-live="polite"></p>
-        </div>
+      <!-- ---- Login Form ---- -->
+      <form class="login-form" id="loginForm" novalidate aria-label="Admin Login Form">
 
         <!-- Email Field -->
         <div class="form-group" id="emailGroup">
           <label class="form-label" for="emailInput">
             <span class="label-icon" aria-hidden="true">
+              <!-- Envelope SVG -->
               <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2.5 5.5A1.5 1.5 0 014 4h12a1.5 1.5 0 011.5 1.5v9A1.5 1.5 0 0116 16H4a1.5 1.5 0 01-1.5-1.5v-9z" stroke="currentColor" stroke-width="1.5"/>
                 <path d="M2.5 5.5l7.5 5 7.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -91,35 +79,26 @@
             Email Address
           </label>
           <div class="input-wrap">
-            <input type="email" id="emailInput" name="email" class="form-input" placeholder="admin@hospital.com" autocomplete="email" aria-required="true" aria-describedby="emailError" />
+            <input
+              type="email"
+              id="emailInput"
+              name="email"
+              class="form-input"
+              placeholder="admin@hospital.com"
+              autocomplete="email"
+              aria-required="true"
+              aria-describedby="emailError"
+            />
             <span class="input-focus-bar" aria-hidden="true"></span>
           </div>
           <p class="form-error" id="emailError" role="alert" aria-live="polite"></p>
-        </div>
-
-        <!-- Admin Invite Code -->
-        <div class="form-group" id="inviteCodeGroup">
-          <label class="form-label" for="inviteCodeInput">
-            <span class="label-icon" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="3" y="8" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M6.5 8V5.5a3.5 3.5 0 017 0V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            </span>
-            Admin Invite Code
-          </label>
-          <div class="input-wrap">
-            <input type="text" id="inviteCodeInput" name="inviteCode" class="form-input" placeholder="Enter invite code" aria-required="true" aria-describedby="inviteCodeError" />
-            <span class="input-focus-bar" aria-hidden="true"></span>
-          </div>
-          <p class="invite-code-hint">Demo invite code: <strong>ADMIN2026</strong></p>
-          <p class="form-error" id="inviteCodeError" role="alert" aria-live="polite"></p>
         </div>
 
         <!-- Password Field -->
         <div class="form-group" id="passwordGroup">
           <label class="form-label" for="passwordInput">
             <span class="label-icon" aria-hidden="true">
+              <!-- Lock SVG -->
               <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="4" y="9" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/>
                 <path d="M7 9V6.5a3 3 0 016 0V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -129,12 +108,30 @@
             Password
           </label>
           <div class="input-wrap password-wrap">
-            <input type="password" id="passwordInput" name="password" class="form-input" placeholder="Create a password" autocomplete="new-password" aria-required="true" aria-describedby="passwordError" />
-            <button type="button" class="toggle-password" id="togglePassword" aria-label="Toggle password visibility" aria-pressed="false">
+            <input
+              type="password"
+              id="passwordInput"
+              name="password"
+              class="form-input"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              aria-required="true"
+              aria-describedby="passwordError"
+            />
+            <!-- Show / Hide Toggle -->
+            <button
+              type="button"
+              class="toggle-password"
+              id="togglePassword"
+              aria-label="Toggle password visibility"
+              aria-pressed="false"
+            >
+              <!-- Eye Open -->
               <svg class="eye-icon eye-open" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M1.5 10S4.5 4 10 4s8.5 6 8.5 6-3 6-8.5 6S1.5 10 1.5 10z" stroke="currentColor" stroke-width="1.5"/>
                 <circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/>
               </svg>
+              <!-- Eye Closed -->
               <svg class="eye-icon eye-closed" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M3 3l14 14M8.6 8.6A2.5 2.5 0 0012.4 11.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                 <path d="M6 5.1C3.9 6.3 2.2 8.3 1.5 10c1.2 3 4.5 6 8.5 6a9 9 0 004-.9M14 14a9 9 0 002.5-4c-1.2-3-4.5-6-8.5-6a9 9 0 00-1.5.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -142,54 +139,53 @@
             </button>
             <span class="input-focus-bar" aria-hidden="true"></span>
           </div>
-          <p class="password-strength-hint">At least 6 characters.</p>
           <p class="form-error" id="passwordError" role="alert" aria-live="polite"></p>
         </div>
 
-        <!-- Confirm Password Field -->
-        <div class="form-group" id="confirmPasswordGroup">
-          <label class="form-label" for="confirmPasswordInput">
-            <span class="label-icon" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="4" y="9" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M7 9V6.5a3 3 0 016 0V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                <circle cx="10" cy="13.5" r="1" fill="currentColor"/>
-              </svg>
-            </span>
-            Confirm Password
+        <!-- Remember Me + Forgot Password -->
+        <div class="form-options">
+          <label class="remember-label" for="rememberMe">
+            <input
+              type="checkbox"
+              id="rememberMe"
+              name="rememberMe"
+              class="remember-checkbox"
+              aria-label="Remember me"
+            />
+            <span class="custom-checkbox" aria-hidden="true"></span>
+            <span class="remember-text">Remember Me</span>
           </label>
-          <div class="input-wrap password-wrap">
-            <input type="password" id="confirmPasswordInput" name="confirmPassword" class="form-input" placeholder="Re-enter your password" autocomplete="new-password" aria-required="true" aria-describedby="confirmPasswordError" />
-            <button type="button" class="toggle-password" id="toggleConfirmPassword" aria-label="Toggle password visibility" aria-pressed="false">
-              <svg class="eye-icon eye-open" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M1.5 10S4.5 4 10 4s8.5 6 8.5 6-3 6-8.5 6S1.5 10 1.5 10z" stroke="currentColor" stroke-width="1.5"/>
-                <circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/>
-              </svg>
-              <svg class="eye-icon eye-closed" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M3 3l14 14M8.6 8.6A2.5 2.5 0 0012.4 11.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M6 5.1C3.9 6.3 2.2 8.3 1.5 10c1.2 3 4.5 6 8.5 6a9 9 0 004-.9M14 14a9 9 0 002.5-4c-1.2-3-4.5-6-8.5-6a9 9 0 00-1.5.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            </button>
-            <span class="input-focus-bar" aria-hidden="true"></span>
-          </div>
-          <p class="form-error" id="confirmPasswordError" role="alert" aria-live="polite"></p>
+
+          <a
+            href="#"
+            class="forgot-link"
+            id="forgotPasswordLink"
+            aria-label="Forgot your password? Click to reset"
+          >Forgot Password?</a>
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="btn-login" id="signupBtn" aria-label="Create administrator account">
-          <span class="btn-text">Create Account</span>
+        <button
+          type="submit"
+          class="btn-login"
+          id="loginBtn"
+          aria-label="Sign in to administrator portal"
+        >
+          <span class="btn-text">Sign In</span>
           <span class="btn-icon" aria-hidden="true">
             <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
+          <!-- Loading Spinner (shown on submit) -->
           <span class="btn-spinner" aria-hidden="true"></span>
+          <!-- Ripple container -->
           <span class="ripple-container" aria-hidden="true"></span>
         </button>
 
       </form>
 
-      <p class="signup-prompt">Already have an account? <a href="admin-login.html">Sign In</a></p>
+      <p class="signup-prompt">New administrator? <a href="admin-signup.html">Create an account</a></p>
 
       <!-- ---- Card Footer ---- -->
       <footer class="card-footer">
@@ -203,13 +199,47 @@
         <p class="footer-copy">&copy; 2026 Nurse Management System. All rights reserved.</p>
       </footer>
 
-    </div>
+    </div><!-- /.login-card -->
   </main>
+
+  <!-- ========================================
+       FORGOT PASSWORD MODAL
+  ======================================== -->
+  <div class="modal-overlay" id="forgotModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+      <div class="modal-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="22" fill="#FCE4EC" stroke="#E91E63" stroke-width="2"/>
+          <path d="M16 22l6.5 6.5L32 16" stroke="#E91E63" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 class="modal-title" id="modalTitle">Reset Password</h2>
+      <p class="modal-desc">Enter your admin email address and we'll send you a link to reset your password.</p>
+      <div class="form-group">
+        <input
+          type="email"
+          id="resetEmail"
+          class="form-input"
+          placeholder="admin@hospital.com"
+          aria-label="Email for password reset"
+        />
+        <p class="form-error" id="resetEmailError" role="alert" aria-live="polite"></p>
+      </div>
+      <button class="btn-login btn-modal" id="resetBtn" aria-label="Send password reset link">
+        <span class="btn-text">Send Reset Link</span>
+        <span class="ripple-container" aria-hidden="true"></span>
+      </button>
+      <p class="modal-success" id="resetSuccess" hidden>
+        <i class="fa-solid fa-check"></i> Reset link sent! Please check your inbox.
+      </p>
+    </div>
+  </div>
 
   <!-- Toast Notification -->
   <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
-  <script src="api-client.js"></script>
-  <script src="admin-signup.js?v=2"></script>
+  <script src="../common/api-client.js"></script>
+  <script src="admin-login.js?v=3"></script>
 </body>
 </html>
