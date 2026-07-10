@@ -63,6 +63,7 @@ let dutyHoursFilter = null; // null = any, 8 or 12
 let skillsFilterSet = new Set(); // selected skill/service chips, empty = any
 let bookDutyHours = 8;
 let ratingsSummary = {}; // { nurseId: { avgRating, reviewCount } }, from real submitted ratings
+let confirmedBookings = []; // Confirmed bookings, used to exclude already-booked nurses for the selected dates
 
 /* ============================================================
    DERIVED DATA HELPERS
@@ -124,6 +125,27 @@ async function loadRatingsSummary() {
   }
 }
 
+async function loadConfirmedBookings() {
+  try {
+    const bookings = await api.get('/bookings');
+    return bookings.filter((b) => b.status === 'Confirmed');
+  } catch (err) {
+    return [];
+  }
+}
+
+/**
+ * A nurse is unavailable for the selected range if they have a Confirmed
+ * booking whose dates overlap it (same overlap rule the backend uses to
+ * auto-deny conflicting requests — see BookingHandler.java).
+ */
+function isNurseAvailableForRange(nurseId, startDate, endDate) {
+  if (!startDate || !endDate) return true;
+  return !confirmedBookings.some((b) =>
+    b.nurseId === nurseId && startDate <= b.endDate && endDate >= b.startDate
+  );
+}
+
 function populateNationalityFilter() {
   const nationalities = [...new Set(allNurses.map((n) => n.nationality).filter(Boolean))].sort();
   nationalities.forEach((nat) => {
@@ -163,6 +185,8 @@ function getFilteredNurses() {
   const query = dom.searchInput.value.trim().toLowerCase();
   const gender = dom.genderFilter.value;
   const nationality = dom.nationalityFilter.value;
+  const startDate = dom.startDateInput.value;
+  const endDate = dom.endDateInput.value;
 
   let result = allNurses.filter((n) => {
     const matchesQuery = !query ||
@@ -175,7 +199,8 @@ function getFilteredNurses() {
     const nurseSkills = (n.skills || '').toLowerCase();
     const matchesSkills = skillsFilterSet.size === 0 ||
       [...skillsFilterSet].some((skill) => nurseSkills.includes(skill.toLowerCase()));
-    return matchesQuery && matchesGender && matchesNationality && matchesDuty && matchesSkills;
+    const matchesAvailability = isNurseAvailableForRange(n.id, startDate, endDate);
+    return matchesQuery && matchesGender && matchesNationality && matchesDuty && matchesSkills && matchesAvailability;
   });
 
   if (sortState.field) {
@@ -363,6 +388,7 @@ async function submitBooking() {
 async function init() {
   allNurses = await loadNurses();
   ratingsSummary = await loadRatingsSummary();
+  confirmedBookings = await loadConfirmedBookings();
   populateNationalityFilter();
   setDefaultDates();
   renderNurseList();
@@ -371,8 +397,8 @@ async function init() {
   dom.searchInput.addEventListener('input', renderNurseList);
   dom.genderFilter.addEventListener('change', renderNurseList);
   dom.nationalityFilter.addEventListener('change', renderNurseList);
-  dom.startDateInput.addEventListener('change', validateDateRange);
-  dom.endDateInput.addEventListener('change', validateDateRange);
+  dom.startDateInput.addEventListener('change', () => { validateDateRange(); renderNurseList(); });
+  dom.endDateInput.addEventListener('change', () => { validateDateRange(); renderNurseList(); });
 
   dom.skillsFilterToggle.addEventListener('click', () => {
     const isOpen = !dom.skillsFilterChips.hidden;
