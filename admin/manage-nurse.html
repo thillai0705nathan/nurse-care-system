@@ -135,6 +135,12 @@
         <a href="add-nurse.html" class="btn btn-pink add-nurse-btn">+ Add New Nurse</a>
       </section>
 
+      <!-- Loading State -->
+      <div class="loading-state" id="loadingState">
+        <div class="loading-spinner"></div>
+        <p>Loading nurses…</p>
+      </div>
+
       <!-- Empty State (no nurses at all) -->
       <div class="empty-state" id="emptyState" hidden>
         <div class="empty-icon"><i class="fa-solid fa-folder-open"></i></div>
@@ -144,7 +150,7 @@
       </div>
 
       <!-- Table -->
-      <div class="table-wrap" id="tableWrap">
+      <div class="table-wrap" id="tableWrap" hidden>
         <table class="nurse-table" id="nurseTable">
           <thead>
             <tr>

@@ -89,6 +89,12 @@
         automatically decline any other pending request for the same nurse with overlapping dates.
       </p>
 
+      <!-- Loading State -->
+      <div class="loading-state" id="loadingState">
+        <div class="loading-spinner"></div>
+        <p>Loading pending bookings…</p>
+      </div>
+
       <!-- Empty State -->
       <div class="empty-state" id="emptyState" hidden>
         <div class="empty-icon"><i class="fa-solid fa-clipboard-check"></i></div>
@@ -97,7 +103,7 @@
       </div>
 
       <!-- Pending Booking List -->
-      <div class="pending-list" id="pendingList">
+      <div class="pending-list" id="pendingList" hidden>
         <!-- cards injected by JS -->
       </div>
 

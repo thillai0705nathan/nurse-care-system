@@ -23,6 +23,7 @@ const dom = {
   dutyHoursLabel: document.getElementById('dutyHoursLabel'),
   sortBar: document.getElementById('sortBar'),
   resultsCount: document.getElementById('resultsCount'),
+  loadingState: document.getElementById('loadingState'),
   nurseList: document.getElementById('nurseList'),
   emptyState: document.getElementById('emptyState'),
 
@@ -244,6 +245,8 @@ function buildNurseCard(nurse) {
 }
 
 function renderNurseList() {
+  dom.loadingState.hidden = true;
+
   const filtered = getFilteredNurses();
   dom.resultsCount.textContent = `${filtered.length} nurse${filtered.length === 1 ? '' : 's'} available`;
   dom.nurseList.innerHTML = '';

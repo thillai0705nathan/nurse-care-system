@@ -12,6 +12,7 @@
 'use strict';
 
 const dom = {
+  loadingState:      document.getElementById('loadingState'),
   emptyState:       document.getElementById('emptyState'),
   pendingList:       document.getElementById('pendingList'),
   pendingCountBadge: document.getElementById('pendingCountBadge'),
@@ -113,6 +114,7 @@ function buildBookingCard(booking) {
 
 async function renderPendingBookings() {
   const bookings = await loadPendingBookings();
+  dom.loadingState.hidden = true;
 
   dom.pendingList.innerHTML = '';
 

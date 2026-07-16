@@ -18,6 +18,7 @@ const dom = {
   miniPartTimeValue:  document.getElementById('miniPartTimeValue'),
   miniAvailableValue: document.getElementById('miniAvailableValue'),
 
+  loadingState:       document.getElementById('loadingState'),
   emptyState:         document.getElementById('emptyState'),
   tableWrap:          document.getElementById('tableWrap'),
   tableBody:          document.getElementById('nurseTableBody'),
@@ -202,6 +203,8 @@ function buildRow(nurse) {
 }
 
 function renderTable() {
+  dom.loadingState.hidden = true;
+
   const filtered = getFilteredNurses();
 
   if (allNurses.length === 0) {

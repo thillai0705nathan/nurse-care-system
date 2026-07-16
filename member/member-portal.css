@@ -487,6 +487,33 @@ input, select, textarea { font-family: inherit; }
 .empty-state p { font-size: 0.85rem; margin-bottom: 1.2rem; }
 
 /* ============================================================
+   LOADING STATE (shown while the first API call is in flight)
+   ============================================================ */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  padding: 3rem 1rem;
+  color: var(--text-gray);
+  font-size: 0.85rem;
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--light-pink);
+  border-top-color: var(--primary-pink);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================================
    TOAST
    ============================================================ */
 .toast {

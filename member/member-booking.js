@@ -11,6 +11,7 @@
 
 const dom = {
   statusTabs: document.getElementById('statusTabs'),
+  loadingState: document.getElementById('loadingState'),
   bookingList: document.getElementById('bookingList'),
   emptyState: document.getElementById('emptyState'),
 
@@ -114,6 +115,7 @@ function buildRatingSection(booking) {
 
 async function renderBookings() {
   const bookings = await getMemberBookings();
+  dom.loadingState.hidden = true;
   cachedBookings = bookings;
   const filtered = activeStatus === 'All' ? bookings : bookings.filter((b) => b.status === activeStatus);
 
