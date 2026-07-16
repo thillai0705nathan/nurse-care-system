@@ -26,6 +26,8 @@ const CONFIG = {
 
 /* Email regex: RFC 5322 simplified */
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+/* Phone regex: optional +, 7-15 digits */
+const PHONE_REGEX = /^\+?[0-9]{7,15}$/;
 
 
 /* ============================================================
@@ -163,12 +165,12 @@ function validateEmail() {
   const val = dom.emailInput.value.trim();
 
   if (!val) {
-    setFieldError(dom.emailGroup, dom.emailError, 'Email address is required.');
+    setFieldError(dom.emailGroup, dom.emailError, 'Email or phone number is required.');
     return false;
   }
 
-  if (!EMAIL_REGEX.test(val)) {
-    setFieldError(dom.emailGroup, dom.emailError, 'Please enter a valid email address.');
+  if (!EMAIL_REGEX.test(val) && !PHONE_REGEX.test(val)) {
+    setFieldError(dom.emailGroup, dom.emailError, 'Enter a valid email address or phone number.');
     return false;
   }
 
@@ -239,7 +241,7 @@ async function authenticateUser(email, password) {
     const result = await api.post('/auth/member/login', { email, password });
     return { success: true, message: `Welcome back, ${result.fullName}! Redirecting…` };
   } catch (err) {
-    return { success: false, message: err.message || 'Invalid email or password. Please try again.' };
+    return { success: false, message: err.message || 'Invalid email/phone or password. Please try again.' };
   }
 }
 
@@ -286,7 +288,7 @@ async function handleLoginSubmit(e) {
       shakeElement(dom.loginCard);
 
       // Highlight password field as incorrect
-      setFieldError(dom.passwordGroup, dom.passwordError, 'Incorrect email or password.');
+      setFieldError(dom.passwordGroup, dom.passwordError, 'Incorrect email/phone or password.');
     }
   } catch (err) {
     showToast('Network error. Please try again.', 'error');

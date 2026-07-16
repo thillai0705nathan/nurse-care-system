@@ -59,6 +59,15 @@ public class MemberAuthHandler extends BaseHandler {
                     }
                 }
             }
+            try (PreparedStatement check = conn.prepareStatement("SELECT id FROM member_accounts WHERE phone = ?")) {
+                check.setString(1, phone);
+                try (ResultSet rs = check.executeQuery()) {
+                    if (rs.next()) {
+                        sendJson(exchange, 409, new JSONObject().put("error", "An account with this phone number already exists."));
+                        return;
+                    }
+                }
+            }
 
             String id = IdUtil.generate("MEM");
             String hash = PasswordUtil.hash(password);
@@ -81,14 +90,19 @@ public class MemberAuthHandler extends BaseHandler {
         }
     }
 
+    /**
+     * Accepts either an email address or a phone number in the "email"
+     * field - a single OR query matches whichever one it turns out to be.
+     */
     private void handleLogin(HttpExchange exchange) throws Exception {
         JSONObject body = readJsonBody(exchange);
-        String email = body.optString("email", "").trim().toLowerCase();
+        String identifier = body.optString("email", "").trim().toLowerCase();
         String password = body.optString("password", "");
 
         try (Connection conn = Database.getConnection();
-             PreparedStatement ps = conn.prepareStatement("SELECT * FROM member_accounts WHERE email = ?")) {
-            ps.setString(1, email);
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM member_accounts WHERE email = ? OR phone = ?")) {
+            ps.setString(1, identifier);
+            ps.setString(2, identifier);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next() && PasswordUtil.verify(password, rs.getString("password_hash"))) {
                     JSONObject result = new JSONObject();
@@ -97,7 +111,7 @@ public class MemberAuthHandler extends BaseHandler {
                     result.put("email", rs.getString("email"));
                     sendJson(exchange, 200, result);
                 } else {
-                    sendJson(exchange, 401, new JSONObject().put("error", "Invalid email or password."));
+                    sendJson(exchange, 401, new JSONObject().put("error", "Invalid email/phone or password."));
                 }
             }
         }

@@ -64,7 +64,7 @@
       </header>
 
       <!-- ---- Login Form ---- -->
-      <form class="login-form" id="loginForm" novalidate aria-label="Admin Login Form">
+      <form class="login-form" id="loginForm" novalidate aria-label="Member Login Form">
 
         <!-- Email Field -->
         <div class="form-group" id="emailGroup">
@@ -76,16 +76,16 @@
                 <path d="M2.5 5.5l7.5 5 7.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
               </svg>
             </span>
-            Email Address
+            Email or Phone Number
           </label>
           <div class="input-wrap">
             <input
-              type="email"
+              type="text"
               id="emailInput"
               name="email"
               class="form-input"
-              placeholder="member@hospital.com"
-              autocomplete="email"
+              placeholder="member@hospital.com or phone number"
+              autocomplete="username"
               aria-required="true"
               aria-describedby="emailError"
             />
