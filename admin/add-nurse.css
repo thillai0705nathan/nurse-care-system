@@ -56,6 +56,12 @@
   max-width: 800px;
 }
 
+@media (min-width: 1200px) {
+  .add-nurse-form {
+    max-width: 1100px;
+  }
+}
+
 .form-card-header {
   display: flex;
   align-items: center;
