@@ -112,6 +112,25 @@ public class NurseHandler extends BaseHandler {
             bindNurse(ps, n, false);
             ps.executeUpdate();
         }
+        syncNurseNameOnBookings(n);
+    }
+
+    /**
+     * Bookings store their own snapshot of nurse_name/nurse_qualification
+     * (taken at booking time) rather than joining live against the nurses
+     * table. Whenever a nurse's name or qualification is edited, keep every
+     * existing booking's snapshot in sync so booking history and
+     * notifications never show a stale name.
+     */
+    private void syncNurseNameOnBookings(Nurse n) throws Exception {
+        try (Connection conn = Database.getConnection();
+             PreparedStatement ps = conn.prepareStatement(
+                     "UPDATE bookings SET nurse_name = ?, nurse_qualification = ? WHERE nurse_id = ?")) {
+            ps.setString(1, n.fullName);
+            ps.setString(2, n.qualification);
+            ps.setString(3, n.id);
+            ps.executeUpdate();
+        }
     }
 
     private void bindNurse(PreparedStatement ps, Nurse n, boolean withId) throws Exception {
