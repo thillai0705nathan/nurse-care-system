@@ -11,6 +11,11 @@
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_REGEX = /^[0-9]{10,15}$/;
 
+/** "janu" -> "Janu", "mary jane" -> "Mary Jane" */
+function toTitleCase(str) {
+  return str.trim().split(/\s+/).map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+}
+
 const dom = {
   form:            document.getElementById('addNurseForm'),
   nurseIdBadge:    document.getElementById('nurseIdBadge'),
@@ -357,7 +362,7 @@ function validateMonthlySalary() {
 function collectNurseData(nurseId) {
   return {
     id: nurseId,
-    fullName: dom.fullName.value.trim(),
+    fullName: toTitleCase(dom.fullName.value),
     gender: dom.gender.value,
     age: Number(dom.age.value),
     nationality: document.getElementById('nationality').value.trim(),
