@@ -32,7 +32,7 @@ async function buildNotifications() {
     {
       id: 'welcome',
       icon: '<i class="fa-solid fa-hand"></i>',
-      title: 'Welcome to Nurse Care',
+      title: 'Welcome to CarePoint',
       text: 'Browse Short-Term and Long-Term nursing services from the Home tab, and book trusted nurses anytime.',
       createdAt: new Date(Date.now() - 86400000).toISOString(),
     },
