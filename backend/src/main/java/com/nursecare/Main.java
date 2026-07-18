@@ -3,6 +3,7 @@ package com.nursecare;
 import com.nursecare.db.Database;
 import com.nursecare.handler.AdminAuthHandler;
 import com.nursecare.handler.BookingHandler;
+import com.nursecare.handler.ChatHandler;
 import com.nursecare.handler.ContactHandler;
 import com.nursecare.handler.MemberAuthHandler;
 import com.nursecare.handler.NurseHandler;
@@ -27,6 +28,7 @@ public class Main {
         server.createContext("/api/auth/member/", new MemberAuthHandler());
         server.createContext("/api/bookings", new BookingHandler());
         server.createContext("/api/contact", new ContactHandler());
+        server.createContext("/api/chat", new ChatHandler());
 
         server.setExecutor(Executors.newFixedThreadPool(10));
         server.start();

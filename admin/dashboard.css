@@ -28,6 +28,10 @@
   font-size: 0.88rem;
 }
 
+.loading-state[hidden] {
+  display: none;
+}
+
 .loading-spinner {
   width: 34px;
   height: 34px;

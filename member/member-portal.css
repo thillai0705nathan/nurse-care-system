@@ -500,6 +500,10 @@ input, select, textarea { font-family: inherit; }
   font-size: 0.85rem;
 }
 
+.loading-state[hidden] {
+  display: none;
+}
+
 .loading-spinner {
   width: 32px;
   height: 32px;
